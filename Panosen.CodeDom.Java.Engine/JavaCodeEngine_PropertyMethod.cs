@@ -20,11 +20,13 @@ namespace Panosen.CodeDom.Java.Engine
             if (codeWriter == null) { return; }
             options = options ?? new GenerateOptions();
 
-            GenerateSummary(codeProperty.Summary, codeWriter, options);
+            GenerateSummary("Get " + codeProperty.Summary, codeWriter, options);
 
             GenerateMethod(BuildMethod_GetProperty(codeProperty), codeWriter, options);
 
             codeWriter.WriteLine();
+
+            GenerateSummary("Set " + codeProperty.Summary, codeWriter, options);
 
             GenerateMethod(BuildMethod_SetMethod(codeProperty), codeWriter, options);
         }

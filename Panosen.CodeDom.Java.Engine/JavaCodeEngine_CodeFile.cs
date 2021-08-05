@@ -22,6 +22,23 @@ namespace Panosen.CodeDom.Java.Engine
 
             codeWriter.Write(KEYWORD_PACKAGE).Write(Marks.WHITESPACE).Write(codeFile.PackageName ?? string.Empty).WriteLine(Marks.SEMICOLON);
 
+            if (codeFile.Mottos != null && codeFile.Mottos.Count > 0)
+            {
+                codeWriter.WriteLine();
+                codeWriter.WriteLine("/*");
+                codeWriter.WriteLine(" *------------------------------------------------------------------------------");
+                for (int i = 0; i < codeFile.Mottos.Count; i++)
+                {
+                    codeWriter.WriteLine($" *     {codeFile.Mottos[i]}");
+                    if (i < codeFile.Mottos.Count - 1)
+                    {
+                        codeWriter.WriteLine($" *");
+                    }
+                }
+                codeWriter.WriteLine(" *------------------------------------------------------------------------------");
+                codeWriter.WriteLine(" */");
+            }
+
             List<string> usingList = new List<string>();
             AddImportList(usingList, codeFile.SystemImportList);
             AddImportList(usingList, codeFile.MavenImportList);

@@ -40,6 +40,11 @@ namespace Panosen.CodeDom.Java
         /// 接口
         /// </summary>
         public List<CodeInterface> InterfaceList { get; set; }
+
+        /// <summary>
+        /// 格言
+        /// </summary>
+        public List<string> Mottos { get; set; }
     }
 
 
@@ -48,6 +53,21 @@ namespace Panosen.CodeDom.Java
     /// </summary>
     public static class CodeFileExtension
     {
+
+        /// <summary>
+        /// 添加一个nuget引用
+        /// </summary>
+        public static CodeFile AddMotto(this CodeFile codeFile, string motto)
+        {
+            if (codeFile.Mottos == null)
+            {
+                codeFile.Mottos = new List<string>();
+            }
+
+            codeFile.Mottos.Add(motto);
+
+            return codeFile;
+        }
 
         /// <summary>
         /// 添加一个nuget引用
@@ -91,7 +111,7 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 添加一个类
         /// </summary>
-        public static void AddClass(this CodeFile codeFile, CodeClass codeClass)
+        public static CodeFile AddClass(this CodeFile codeFile, CodeClass codeClass)
         {
             if (codeFile.ClassList == null)
             {
@@ -99,6 +119,26 @@ namespace Panosen.CodeDom.Java
             }
 
             codeFile.ClassList.Add(codeClass);
+
+            return codeFile;
+        }
+
+        /// <summary>
+        /// 添加一个类
+        /// </summary>
+        public static CodeClass AddClass(this CodeFile codeFile, string name = null)
+        {
+            if (codeFile.ClassList == null)
+            {
+                codeFile.ClassList = new List<CodeClass>();
+            }
+
+            CodeClass codeClass = new CodeClass();
+            codeClass.Name = name;
+
+            codeFile.ClassList.Add(codeClass);
+
+            return codeClass;
         }
     }
 }
