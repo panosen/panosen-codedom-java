@@ -74,23 +74,29 @@ public class Student {
     }
 
     /**
-     * 属性 0
+     * Get 属性 0
      */
     public int getProperty0() {
         return property0;
     }
 
+    /**
+     * Set 属性 0
+     */
     public void setProperty0(int property0) {
         this.property0 = property0;
     }
 
     /**
-     * 属性 1
+     * Get 属性 1
      */
     public int getProperty1() {
         return property1;
     }
 
+    /**
+     * Set 属性 1
+     */
     public void setProperty1(int property1) {
         this.property1 = property1;
     }

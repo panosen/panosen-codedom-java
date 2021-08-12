@@ -17,10 +17,19 @@ namespace Panosen.CodeDom.Java
         {
         }
 
+        /// <summary>
+        /// Public
+        /// </summary>
         public static readonly AccessModifiers Public = new AccessModifiers { Value = "public" };
 
+        /// <summary>
+        /// Private
+        /// </summary>
         public static readonly AccessModifiers Private = new AccessModifiers { Value = "private" };
 
+        /// <summary>
+        /// Protected
+        /// </summary>
         public static readonly AccessModifiers Protected = new AccessModifiers { Value = "protected" };
     }
 }
