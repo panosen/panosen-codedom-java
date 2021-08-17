@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 namespace Panosen.CodeDom.Java
 {
     /// <summary>
-    /// CodeValueType
+    /// 为 String 类型的变量赋值
     /// </summary>
-    public enum CodeValueType
+    public class AssignStringVariableStepBuilder : StepBuilder
     {
         /// <summary>
-        /// 保持原样
+        /// Name
         /// </summary>
-        PLAIN = 0,
+        public string Name { get; set; }
 
         /// <summary>
-        /// 需要用双引号包裹
+        /// Value
         /// </summary>
-        STRING = 1
+        public string Value { get; set; }
     }
 }

@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace Panosen.CodeDom.Java
 {
     /// <summary>
-    /// 为 String 类型的变量赋值
+    /// ElseIfStepBuilder
     /// </summary>
-    public class AssignStringVariableStepBuilder : StepBuilder
+    public class ElseIfStepBuilder : StepBuilderCollection
     {
-        public string Name { get; set; }
-
-        public string Value { get; set; }
+        /// <summary>
+        /// Condition
+        /// </summary>
+        public string Condition { get; set; }
     }
 }

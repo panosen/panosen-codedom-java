@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
+    /// <summary>
+    /// EnumBinaryOperator
+    /// </summary>
     public enum EnumBinaryOperator
     {
         /// <summary>
@@ -69,7 +72,7 @@ namespace Panosen.CodeDom.Java
         BooleanOr,
 
         /// <summary>
-        /// &&
+        /// &amp;&amp;
         /// </summary>
         BooleanAnd,
 

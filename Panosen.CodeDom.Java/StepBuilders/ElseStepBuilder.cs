@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
-    public class BracketStepBuilder : StepBuilder
+    /// <summary>
+    /// ElseStepBuilder
+    /// </summary>
+    public class ElseStepBuilder : StepBuilderCollection
     {
-        public string Key { get; set; }
-
-        public string EndWith { get; set; }
     }
 }

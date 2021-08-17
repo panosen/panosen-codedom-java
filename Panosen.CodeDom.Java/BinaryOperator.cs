@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
+    /// <summary>
+    /// BinaryOperator
+    /// </summary>
     public class BinaryOperator
     {
+        /// <summary>
+        /// Value
+        /// </summary>
         public string Value { get; private set; } = string.Empty;
 
         private BinaryOperator()
@@ -75,7 +81,7 @@ namespace Panosen.CodeDom.Java
         public static readonly BinaryOperator BooleanOr = new BinaryOperator { Value = "||" };
 
         /// <summary>
-        /// &&
+        /// &amp;&amp;
         /// </summary>
         public static readonly BinaryOperator BooleanAnd = new BinaryOperator { Value = "&&" };
 
@@ -99,6 +105,9 @@ namespace Panosen.CodeDom.Java
         /// </summary>
         public static readonly BinaryOperator GreaterThanOrEqual = new BinaryOperator { Value = ">=" };
 
+        /// <summary>
+        /// BinaryOperator
+        /// </summary>
         public static implicit operator BinaryOperator(EnumBinaryOperator binaryOperator)
         {
             switch (binaryOperator)

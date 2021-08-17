@@ -41,26 +41,26 @@ namespace Panosen.CodeDom.Java.Engine
 
             if (codeClass.IsFinal)
             {
-                codeWriter.Write(KEYWORD_FINAL).Write(Marks.WHITESPACE);
+                codeWriter.Write(Keywords.FINAL).Write(Marks.WHITESPACE);
             }
 
             if (codeClass.IsAbstract)
             {
-                codeWriter.Write(KEYWORD_ABSTRACT).Write(Marks.WHITESPACE);
+                codeWriter.Write(Keywords.ABSTRACT).Write(Marks.WHITESPACE);
             }
 
-            codeWriter.Write(KEYWORD_CLASS).Write(Marks.WHITESPACE).Write(codeClass.Name ?? string.Empty);
+            codeWriter.Write(Keywords.CLASS).Write(Marks.WHITESPACE).Write(codeClass.Name ?? string.Empty);
 
             if (codeClass.BaseClass != null)
             {
-                codeWriter.Write(Marks.WHITESPACE).Write(KEYWORD_EXTENDS).Write(Marks.WHITESPACE).Write(codeClass.BaseClass.Name ?? string.Empty);
+                codeWriter.Write(Marks.WHITESPACE).Write(Keywords.EXTENDS).Write(Marks.WHITESPACE).Write(codeClass.BaseClass.Name ?? string.Empty);
             }
 
             if (codeClass.InterfaceList != null && codeClass.InterfaceList.Count > 0)
             {
                 foreach (var codeInterface in codeClass.InterfaceList)
                 {
-                    codeWriter.Write(Marks.WHITESPACE).Write(KEYWORD_IMPLEMENTS).Write(Marks.WHITESPACE).Write(codeInterface.Name ?? string.Empty);
+                    codeWriter.Write(Marks.WHITESPACE).Write(Keywords.IMPLEMENTS).Write(Marks.WHITESPACE).Write(codeInterface.Name ?? string.Empty);
                 }
             }
 

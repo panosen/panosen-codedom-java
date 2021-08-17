@@ -8,6 +8,9 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
+        /// <summary>
+        /// GenerateAttribute
+        /// </summary>
         public void GenerateAttribute(CodeAttribute codeAttribute, CodeWriter codeWriter, GenerateOptions options = null)
         {
             if (codeAttribute == null) { return; }
@@ -28,6 +31,11 @@ namespace Panosen.CodeDom.Java.Engine
             codeWriter.Write(Marks.AT).Write(codeAttribute.Name ?? string.Empty).Write(itemString);
         }
 
+        /// <summary>
+        /// ToValue
+        /// </summary>
+        /// <param name="codeValue"></param>
+        /// <returns></returns>
         public static string ToValue(CodeValue codeValue)
         {
             switch (codeValue.Type)

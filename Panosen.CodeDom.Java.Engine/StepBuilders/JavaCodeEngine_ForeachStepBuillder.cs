@@ -8,9 +8,12 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
+        /// <summary>
+        /// GenerateForeachStepBuilder
+        /// </summary>
         public void GenerateForeachStepBuilder(ForeachStepBuilder foreachStepBuilder, CodeWriter codeWriter, GenerateOptions options)
         {
-            codeWriter.Write(options.IndentString).Write(KEYWORD_FOR).Write(Marks.WHITESPACE).Write(Marks.LEFT_BRACKET)
+            codeWriter.Write(options.IndentString).Write(Keywords.FOR).Write(Marks.WHITESPACE).Write(Marks.LEFT_BRACKET)
                 .Write(foreachStepBuilder.Type ?? string.Empty).Write(Marks.WHITESPACE)
                 .Write(foreachStepBuilder.Item ?? string.Empty).Write(Marks.WHITESPACE)
                 .Write(Marks.COLON).Write(Marks.WHITESPACE)
@@ -18,7 +21,7 @@ namespace Panosen.CodeDom.Java.Engine
                 .Write(Marks.RIGHT_BRACKET)
                 .Write(Marks.WHITESPACE);
 
-            StepBlocks(codeWriter, options, foreachStepBuilder.StepBuilders);
+            GenerateStepBuilderOrCollectionListAsBlock(foreachStepBuilder.StepBuilders, codeWriter, options);
         }
     }
 }

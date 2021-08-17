@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java.Engine
 {
+    /// <summary>
+    /// GenerateOpioons
+    /// </summary>
     public class GenerateOptions
     {
+        /// <summary>
+        /// TabString
+        /// </summary>
         public string TabString { get; set; } = "    ";
 
         private int indentSize = 0;

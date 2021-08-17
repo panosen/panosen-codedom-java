@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
+    /// <summary>
+    /// CodePropery
+    /// </summary>
     public class CodeProperty : CodeMember
     {
         /// <summary>
@@ -34,9 +37,14 @@ namespace Panosen.CodeDom.Java
         public bool IsStatic { get; internal set; }
     }
 
-
+    /// <summary>
+    /// CodePropertyExtension
+    /// </summary>
     public static class CodePropertyExtension
     {
+        /// <summary>
+        /// AddAttribute
+        /// </summary>
         public static CodeProperty AddAttribute(this CodeProperty codeProperty, CodeAttribute codeAttribute)
         {
             if (codeProperty.AttributeList == null)
@@ -49,6 +57,9 @@ namespace Panosen.CodeDom.Java
             return codeProperty;
         }
 
+        /// <summary>
+        /// Addtribute
+        /// </summary>
         public static CodeAttribute AddAttribute(this CodeProperty codeProperty, string name)
         {
             if (codeProperty.AttributeList == null)
@@ -64,6 +75,9 @@ namespace Panosen.CodeDom.Java
             return codeAttribute;
         }
 
+        /// <summary>
+        /// AddValue
+        /// </summary>
         public static CodeProperty AddValue(this CodeProperty codeProperty, CodeValue codeValue)
         {
             if (codeProperty.ValueList == null)
@@ -76,6 +90,9 @@ namespace Panosen.CodeDom.Java
             return codeProperty;
         }
 
+        /// <summary>
+        /// AddStringValue
+        /// </summary>
         public static CodeProperty AddStringValue(this CodeProperty codeProperty, string value)
         {
             if (codeProperty.ValueList == null)
@@ -91,6 +108,9 @@ namespace Panosen.CodeDom.Java
             return codeProperty;
         }
 
+        /// <summary>
+        /// AddPlainValue
+        /// </summary>
         public static CodeProperty AddPlainValue(this CodeProperty codeProperty, string value)
         {
             if (codeProperty.ValueList == null)

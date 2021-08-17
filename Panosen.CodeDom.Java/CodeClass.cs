@@ -65,8 +65,14 @@ namespace Panosen.CodeDom.Java
         public List<CodeAttribute> AttributeList { get; set; }
     }
 
+    /// <summary>
+    /// CodeClassExtension
+    /// </summary>
     public static class CodeClassExtension
     {
+        /// <summary>
+        /// AddAttribute
+        /// </summary>
         public static CodeClass AddAttribute(this CodeClass codeClass, CodeAttribute codeAttribute)
         {
             if (codeClass.AttributeList == null)
@@ -79,6 +85,9 @@ namespace Panosen.CodeDom.Java
             return codeClass;
         }
 
+        /// <summary>
+        /// AddAttribute
+        /// </summary>
         public static CodeAttribute AddAttribute(this CodeClass codeClass, string name)
         {
             if (codeClass.AttributeList == null)
@@ -94,6 +103,9 @@ namespace Panosen.CodeDom.Java
             return codeAttribute;
         }
 
+        /// <summary>
+        /// AddInterface
+        /// </summary>
         public static CodeInterface AddInterface(this CodeClass codeClass, string name, string summary = null)
         {
             if (codeClass.InterfaceList == null)
@@ -110,6 +122,9 @@ namespace Panosen.CodeDom.Java
             return codeInterface;
         }
 
+        /// <summary>
+        /// SetBaseClass
+        /// </summary>
         public static CodeClass SetBaseClass(this CodeClass codeClass, string name, string summary = null)
         {
             CodeClass baseCodeClass = new CodeClass();
@@ -124,9 +139,6 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 添加一个方法
         /// </summary>
-        /// <param name="codeClass"></param>
-        /// <param name="codeMethod"></param>
-        /// <returns></returns>
         public static CodeClass AddMethod(this CodeClass codeClass, CodeMethod codeMethod)
         {
             if (codeClass.MethodList == null)
@@ -181,6 +193,9 @@ namespace Panosen.CodeDom.Java
             return codeClass;
         }
 
+        /// <summary>
+        /// AddConstructor
+        /// </summary>
         public static CodeClass AddConstructor(this CodeClass codeClass, CodeMethod codeMethod)
         {
             if (codeClass.ConstructorList == null)
@@ -210,6 +225,9 @@ namespace Panosen.CodeDom.Java
             return codeMethod;
         }
 
+        /// <summary>
+        /// AddProperty
+        /// </summary>
         public static CodeClass AddProperty(this CodeClass codeClass, CodeProperty codeProperty)
         {
             if (codeClass.PropertyList == null)
@@ -222,6 +240,9 @@ namespace Panosen.CodeDom.Java
             return codeClass;
         }
 
+        /// <summary>
+        /// AddProperty
+        /// </summary>
         public static CodeProperty AddProperty(this CodeClass codeClass, string type, string name, bool isStatic = false, string summary = null, string plainValue = null, string stringValue = null)
         {
             if (codeClass.PropertyList == null)
@@ -248,6 +269,9 @@ namespace Panosen.CodeDom.Java
             return codeProperty;
         }
 
+        /// <summary>
+        /// AddField
+        /// </summary>
         public static CodeClass AddField(this CodeClass codeClass, CodeField codeField)
         {
             if (codeClass.FieldList == null)
@@ -260,6 +284,9 @@ namespace Panosen.CodeDom.Java
             return codeClass;
         }
 
+        /// <summary>
+        /// AddField
+        /// </summary>
         public static CodeField AddField(this CodeClass codeClass, string type, string name, bool isFinal = false, bool isStatic = false, string summary = null, AccessModifiers accessModifiers = null)
         {
             if (codeClass.FieldList == null)
@@ -280,6 +307,9 @@ namespace Panosen.CodeDom.Java
             return codeField;
         }
 
+        /// <summary>
+        /// AddConstant
+        /// </summary>
         public static CodeClass AddConstant(this CodeClass codeClass, CodeConstant codeConstant)
         {
             if (codeClass.ConstantList == null)
@@ -292,6 +322,9 @@ namespace Panosen.CodeDom.Java
             return codeClass;
         }
 
+        /// <summary>
+        /// AddConstant
+        /// </summary>
         public static CodeConstant AddConstant(this CodeClass codeClass, string type, string name, string value, string summary = null, AccessModifiers accessModifiers = null)
         {
             if (codeClass.ConstantList == null)

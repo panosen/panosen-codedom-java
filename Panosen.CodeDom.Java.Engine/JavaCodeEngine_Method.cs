@@ -8,6 +8,9 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
+        /// <summary>
+        /// GenerateMethod
+        /// </summary>
         public void GenerateMethod(CodeMethod codeMethod, CodeWriter codeWriter, GenerateOptions options = null)
         {
             if (codeMethod == null) { return; }
@@ -35,12 +38,12 @@ namespace Panosen.CodeDom.Java.Engine
 
             if (codeMethod.IsSynchronized)
             {
-                codeWriter.Write(KEYWORD_SYNCHRONIZED).Write(Marks.WHITESPACE);
+                codeWriter.Write(Keywords.SYNCHRONIZED).Write(Marks.WHITESPACE);
             }
 
             if (codeMethod.IsStatic)
             {
-                codeWriter.Write(KEYWORD_STATIC).Write(Marks.WHITESPACE);
+                codeWriter.Write(Keywords.STATIC).Write(Marks.WHITESPACE);
             }
 
             if (!string.IsNullOrEmpty(codeMethod.Type))
@@ -70,7 +73,7 @@ namespace Panosen.CodeDom.Java.Engine
 
             if (codeMethod.ExceptionList != null && codeMethod.ExceptionList.Count > 0)
             {
-                codeWriter.Write(Marks.WHITESPACE).Write(KEYWORD_THROWS).Write(Marks.WHITESPACE).Write(string.Join(", ", codeMethod.ExceptionList));
+                codeWriter.Write(Marks.WHITESPACE).Write(Keywords.THROWS).Write(Marks.WHITESPACE).Write(string.Join(", ", codeMethod.ExceptionList));
             }
 
             if (codeMethod.StepBuilders == null)
@@ -85,7 +88,7 @@ namespace Panosen.CodeDom.Java.Engine
 
             foreach (var stepBuilder in codeMethod.StepBuilders)
             {
-                GenerateStepBuilder(stepBuilder, codeWriter, options);
+                GenerateStepBuilderOrCollection(stepBuilder, codeWriter, options);
             }
 
             options.PopIndent();

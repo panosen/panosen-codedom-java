@@ -20,7 +20,7 @@ namespace Panosen.CodeDom.Java.Engine
             if (codeWriter == null) { return; }
             options = options ?? new GenerateOptions();
 
-            codeWriter.Write(KEYWORD_PACKAGE).Write(Marks.WHITESPACE).Write(codeFile.PackageName ?? string.Empty).WriteLine(Marks.SEMICOLON);
+            codeWriter.Write(Keywords.PACKAGE).Write(Marks.WHITESPACE).Write(codeFile.PackageName ?? string.Empty).WriteLine(Marks.SEMICOLON);
 
             if (codeFile.Mottos != null && codeFile.Mottos.Count > 0)
             {
@@ -54,7 +54,7 @@ namespace Panosen.CodeDom.Java.Engine
                         continue;
                     }
 
-                    codeWriter.Write(KEYWORD_IMPORT).Write(Marks.WHITESPACE).Write(usingItem).WriteLine(";");
+                    codeWriter.Write(Keywords.IMPORT).Write(Marks.WHITESPACE).Write(usingItem).WriteLine(";");
                 }
             }
 

@@ -22,9 +22,14 @@ namespace Panosen.CodeDom.Java
         public List<CodeAttribute> AttributeList { get; set; }
     }
 
-
+    /// <summary>
+    /// CodeParameterExtension
+    /// </summary>
     public static class CodeParameterExtension
     {
+        /// <summary>
+        /// AddAttribute
+        /// </summary>
         public static TCodeParameter AddAttribute<TCodeParameter>(this TCodeParameter codeParameter, CodeAttribute codeAttribute)
             where TCodeParameter : CodeParameter
         {
@@ -38,6 +43,9 @@ namespace Panosen.CodeDom.Java
             return codeParameter;
         }
 
+        /// <summary>
+        /// AddAttribute
+        /// </summary>
         public static TCodeParameter AddAttribute<TCodeParameter>(this TCodeParameter codeParameter, string name)
             where TCodeParameter : CodeParameter
         {

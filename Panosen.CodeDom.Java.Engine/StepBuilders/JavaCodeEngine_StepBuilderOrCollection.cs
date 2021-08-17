@@ -14,7 +14,7 @@ namespace Panosen.CodeDom.Java.Engine
         /// <param name="stepBuilder"></param>
         /// <param name="codeWriter"></param>
         /// <param name="options"></param>
-        public void GenerateStepBuilder(StepBuilder stepBuilder, CodeWriter codeWriter, GenerateOptions options = null)
+        public void GenerateStepBuilderOrCollection(StepBuilderOrCollection stepBuilder, CodeWriter codeWriter, GenerateOptions options = null)
         {
             if (stepBuilder == null) { return; }
             if (codeWriter == null) { return; }
@@ -48,11 +48,6 @@ namespace Panosen.CodeDom.Java.Engine
             if (stepBuilder is ForStepBuilder)
             {
                 GenerateForStepBuilder(stepBuilder as ForStepBuilder, codeWriter, options);
-            }
-
-            if (stepBuilder is BracketStepBuilder)
-            {
-                GenerateBracketStepBuilder(stepBuilder as BracketStepBuilder, codeWriter, options);
             }
 
             if (stepBuilder is PushIndentStepBuilder)

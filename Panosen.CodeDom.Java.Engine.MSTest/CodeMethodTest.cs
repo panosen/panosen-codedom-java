@@ -34,7 +34,7 @@ namespace Panosen.CodeDom.Java.Engine.MSTest
     name = age.ToString();
     try {
         int a = 0;
-    } catch{
+    } catch {
         //something 1
         11111
     } catch (Exception) {

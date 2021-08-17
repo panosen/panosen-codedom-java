@@ -8,6 +8,9 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
+        /// <summary>
+        /// GenerateAssignStringVariableStepBuilder
+        /// </summary>
         public void GenerateAssignStringVariableStepBuilder(AssignStringVariableStepBuilder assignStringVariableStepBuilder, CodeWriter codeWriter, GenerateOptions options)
         {
             var items = assignStringVariableStepBuilder.Value.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();

@@ -45,7 +45,7 @@ namespace Panosen.CodeDom.Java.Engine
 
             if (codeProperty.IsStatic)
             {
-                codeWriter.Write(KEYWORD_STATIC).Write(Marks.WHITESPACE);
+                codeWriter.Write(Keywords.STATIC).Write(Marks.WHITESPACE);
             }
 
             codeWriter.Write(codeProperty.Type ?? string.Empty).Write(Marks.WHITESPACE)

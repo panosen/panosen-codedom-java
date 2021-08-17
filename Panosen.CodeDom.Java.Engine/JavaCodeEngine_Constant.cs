@@ -8,6 +8,9 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
+        /// <summary>
+        /// GenerateConstant
+        /// </summary>
         public void GenerateConstant(CodeConstant codeConstant, CodeWriter codeWriter, GenerateOptions options = null)
         {
             if (codeConstant == null) { return; }
@@ -22,7 +25,7 @@ namespace Panosen.CodeDom.Java.Engine
                 codeWriter.Write(codeConstant.AccessModifiers.Value).Write(Marks.WHITESPACE);
             }
 
-            codeWriter.Write(KEYWORD_CONST).Write(Marks.WHITESPACE);
+            codeWriter.Write(Keywords.CONST).Write(Marks.WHITESPACE);
 
             codeWriter.Write(codeConstant.Type ?? string.Empty)
                 .Write(Marks.WHITESPACE).Write(codeConstant.Name ?? string.Empty)

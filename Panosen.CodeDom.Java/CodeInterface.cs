@@ -27,9 +27,14 @@ namespace Panosen.CodeDom.Java
         public CodeInterface BaseInterface { get; set; }
     }
 
-
+    /// <summary>
+    /// CodeInterfaceExtension
+    /// </summary>
     public static class CodeInterfaceExtension
     {
+        /// <summary>
+        /// AddMethod
+        /// </summary>
         public static CodeInterface AddMethod(this CodeInterface codeInterface, CodeMethod codeMethod)
         {
             if (codeInterface.MethodList == null)
@@ -42,6 +47,9 @@ namespace Panosen.CodeDom.Java
             return codeInterface;
         }
 
+        /// <summary>
+        /// SetBaseInterface
+        /// </summary>
         public static CodeInterface SetBaseInterface(this CodeInterface codeInterface, string name, string summary = null)
         {
             CodeInterface baseCodeInterface = new CodeInterface();

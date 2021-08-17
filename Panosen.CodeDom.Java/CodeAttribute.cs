@@ -6,16 +6,30 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
+    /// <summary>
+    /// CodeAttribute
+    /// </summary>
     public class CodeAttribute : CodeObject
     {
+        /// <summary>
+        /// ParamList
+        /// </summary>
         public List<CodeValue> ParamList { get; set; }
 
+        /// <summary>
+        /// ParamMap
+        /// </summary>
         public Dictionary<string, CodeValue> ParamMap { get; set; }
     }
 
-
+    /// <summary>
+    /// CodeAttributeExtension
+    /// </summary>
     public static class CodeAttributeExtension
     {
+        /// <summary>
+        /// AddPlainParam
+        /// </summary>
         public static CodeAttribute AddPlainParam(this CodeAttribute codeAttribute, string value)
         {
             if (codeAttribute.ParamList == null)
@@ -31,6 +45,10 @@ namespace Panosen.CodeDom.Java
 
             return codeAttribute;
         }
+
+        /// <summary>
+        /// AddStringParam
+        /// </summary>
         public static CodeAttribute AddStringParam(this CodeAttribute codeAttribute, string value)
         {
             if (codeAttribute.ParamList == null)
@@ -47,6 +65,9 @@ namespace Panosen.CodeDom.Java
             return codeAttribute;
         }
 
+        /// <summary>
+        /// AddPlainParam
+        /// </summary>
         public static CodeAttribute AddPlainParam(this CodeAttribute codeAttribute, string key, string value)
         {
             if (codeAttribute.ParamMap == null)
@@ -68,6 +89,9 @@ namespace Panosen.CodeDom.Java
             return codeAttribute;
         }
 
+        /// <summary>
+        /// AddStringParam
+        /// </summary>
         public static CodeAttribute AddStringParam(this CodeAttribute codeAttribute, string key, string value)
         {
             if (codeAttribute.ParamMap == null)

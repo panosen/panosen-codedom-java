@@ -9,7 +9,7 @@ namespace Panosen.CodeDom.Java
     /// <summary>
     /// 方法
     /// </summary>
-    public class CodeMethod : StepBuilder
+    public class CodeMethod : CodeObject, IStepBuilderCollection
     {
         /// <summary>
         /// 类型
@@ -45,10 +45,25 @@ namespace Panosen.CodeDom.Java
         /// synchronized
         /// </summary>
         public bool IsSynchronized { get; set; }
+
+        #region IStepBuilderCollection Members
+
+        /// <summary>
+        /// IStepBuilderCollection.StepBuilders
+        /// </summary>
+        public List<StepBuilderOrCollection> StepBuilders { get; set; }
+
+        #endregion
     }
 
+    /// <summary>
+    /// CodeMethodExtension
+    /// </summary>
     public static class CodeMethodExtension
     {
+        /// <summary>
+        /// AddParameter
+        /// </summary>
         public static CodeParameter AddParameter(this CodeMethod codeMethod, CodeParameter parameter)
         {
             if (codeMethod.Parameters == null)
@@ -61,6 +76,9 @@ namespace Panosen.CodeDom.Java
             return parameter;
         }
 
+        /// <summary>
+        /// AddParameter
+        /// </summary>
         public static CodeParameter AddParameter(this CodeMethod codeMethod, string type, string name, string summary = null)
         {
             if (codeMethod.Parameters == null)
@@ -78,6 +96,9 @@ namespace Panosen.CodeDom.Java
             return parameter;
         }
 
+        /// <summary>
+        /// AddAttribute
+        /// </summary>
         public static CodeMethod AddAttribute(this CodeMethod codeMethod, CodeAttribute codeAttribute)
         {
             if (codeMethod.AttributeList == null)
@@ -90,6 +111,9 @@ namespace Panosen.CodeDom.Java
             return codeMethod;
         }
 
+        /// <summary>
+        /// AddAttribute
+        /// </summary>
         public static CodeAttribute AddAttribute(this CodeMethod codeMethod, string name)
         {
             if (codeMethod.AttributeList == null)
@@ -105,6 +129,9 @@ namespace Panosen.CodeDom.Java
             return codeAttribute;
         }
 
+        /// <summary>
+        /// AddException
+        /// </summary>
         public static CodeMethod AddException(this CodeMethod codeMethod, string exception)
         {
             if (codeMethod.ExceptionList == null)

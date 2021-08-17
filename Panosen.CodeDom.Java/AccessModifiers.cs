@@ -11,6 +11,9 @@ namespace Panosen.CodeDom.Java
     /// </summary>
     public class AccessModifiers
     {
+        /// <summary>
+        /// Value
+        /// </summary>
         public string Value { get; private set; }
 
         private AccessModifiers()

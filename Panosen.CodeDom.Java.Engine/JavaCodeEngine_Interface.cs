@@ -29,11 +29,11 @@ namespace Panosen.CodeDom.Java.Engine
                 codeWriter.Write(codeInterface.AccessModifiers.Value).Write(Marks.WHITESPACE);
             }
 
-            codeWriter.Write(KEYWORD_INTERFACE).Write(Marks.WHITESPACE).Write(codeInterface.Name ?? string.Empty);
+            codeWriter.Write(Keywords.INTERFACE).Write(Marks.WHITESPACE).Write(codeInterface.Name ?? string.Empty);
 
             if (codeInterface.BaseInterface != null)
             {
-                codeWriter.Write(Marks.WHITESPACE).Write(KEYWORD_EXTENDS).Write(Marks.WHITESPACE).Write(codeInterface.BaseInterface.Name ?? string.Empty);
+                codeWriter.Write(Marks.WHITESPACE).Write(Keywords.EXTENDS).Write(Marks.WHITESPACE).Write(codeInterface.BaseInterface.Name ?? string.Empty);
             }
 
             codeWriter.Write(Marks.WHITESPACE).WriteLine(Marks.LEFT_BRACE);

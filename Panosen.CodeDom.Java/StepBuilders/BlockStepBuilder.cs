@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
-    public class ElseIfStepBuilder : StepBuilder
+    /// <summary>
+    /// BlockStepBuilder
+    /// </summary>
+    public class BlockStepBuilder : StepBuilderCollection
     {
-        public string Condition { get; set; }
+
     }
 }

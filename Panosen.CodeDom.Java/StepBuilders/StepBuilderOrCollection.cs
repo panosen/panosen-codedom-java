@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
-    public class FinallyStepBuilder : StepBuilder
+    /// <summary>
+    /// StepBuilderOrCollection
+    /// </summary>
+    public abstract class StepBuilderOrCollection
     {
     }
 }

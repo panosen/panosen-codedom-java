@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
+    /// <summary>
+    /// Code
+    /// </summary>
     public abstract class Code
     {
     }

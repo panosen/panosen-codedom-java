@@ -43,9 +43,14 @@ namespace Panosen.CodeDom.Java
         public List<CodeValue> ValueList { get; set; }
     }
 
-
+    /// <summary>
+    /// CodeFieldExtension
+    /// </summary>
     public static class CodeFieldExtension
     {
+        /// <summary>
+        /// AddAttribute
+        /// </summary>
         public static CodeField AddAttribute(this CodeField codeField, CodeAttribute codeAttribute)
         {
             if (codeField.AttributeList == null)
@@ -58,6 +63,9 @@ namespace Panosen.CodeDom.Java
             return codeField;
         }
 
+        /// <summary>
+        /// AddAttribute
+        /// </summary>
         public static CodeAttribute AddAttribute(this CodeField codeField, string name)
         {
             if (codeField.AttributeList == null)
@@ -73,6 +81,9 @@ namespace Panosen.CodeDom.Java
             return codeAttribute;
         }
 
+        /// <summary>
+        /// AddValue
+        /// </summary>
         public static CodeField AddValue(this CodeField codeField, CodeValue codeValue)
         {
             if (codeField.ValueList == null)
@@ -85,6 +96,9 @@ namespace Panosen.CodeDom.Java
             return codeField;
         }
 
+        /// <summary>
+        /// AddStringValue
+        /// </summary>
         public static CodeField AddStringValue(this CodeField codeField, string value)
         {
             if (codeField.ValueList == null)
@@ -100,6 +114,9 @@ namespace Panosen.CodeDom.Java
             return codeField;
         }
 
+        /// <summary>
+        /// AddPlainValue
+        /// </summary>
         public static CodeField AddPlainValue(this CodeField codeField, string value)
         {
             if (codeField.ValueList == null)

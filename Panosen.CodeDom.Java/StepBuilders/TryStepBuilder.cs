@@ -9,7 +9,7 @@ namespace Panosen.CodeDom.Java
     /// <summary>
     /// try
     /// </summary>
-    public class TryStepBuilder : StepBuilder
+    public class TryStepBuilder : StepBuilderCollection
     {
         /// <summary>
         /// catch
@@ -22,8 +22,14 @@ namespace Panosen.CodeDom.Java
         public FinallyStepBuilder FinallyStepBuilder { get; set; }
     }
 
+    /// <summary>
+    /// TryStepBuilderExtension
+    /// </summary>
     public static class TryStepBuilderExtension
     {
+        /// <summary>
+        /// WithCatch
+        /// </summary>
         public static CatchStepBuilder WithCatch(this TryStepBuilder tryStepBuilder, string exceptionType = null, string exceptionName = null)
         {
             if (tryStepBuilder.CatchStepBuilders == null)
@@ -34,13 +40,15 @@ namespace Panosen.CodeDom.Java
             CatchStepBuilder catchStepBuilder = new CatchStepBuilder();
             catchStepBuilder.ExceptionType = exceptionType;
             catchStepBuilder.ExceptionName = exceptionName;
-            catchStepBuilder.Name = exceptionName;
 
             tryStepBuilder.CatchStepBuilders.Add(catchStepBuilder);
 
             return catchStepBuilder;
         }
 
+        /// <summary>
+        /// WithFinally
+        /// </summary>
         public static FinallyStepBuilder WithFinally(this TryStepBuilder tryStepBuilder)
         {
             FinallyStepBuilder finallyStepBuilder = new FinallyStepBuilder();

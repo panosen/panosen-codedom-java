@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
-    public class PushIndentStepBuilder : StepBuilder
+    /// <summary>
+    /// FinallyStepBuilder
+    /// </summary>
+    public class FinallyStepBuilder : StepBuilderCollection
     {
-        public string Key { get; set; }
     }
 }

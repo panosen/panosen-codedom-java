@@ -11,6 +11,9 @@ namespace Panosen.CodeDom.Java.Engine
     /// </summary>
     partial class JavaCodeEngine
     {
+        /// <summary>
+        /// GenerateExpresion
+        /// </summary>
         public void GenerateExpresion(CodeExpression codeExpression, CodeWriter codeWriter, GenerateOptions options)
         {
             if (codeExpression == null) { return; }
@@ -36,6 +39,9 @@ namespace Panosen.CodeDom.Java.Engine
             }
         }
 
+        /// <summary>
+        /// GenerateBinaryOperatorExpresion
+        /// </summary>
         public void GenerateBinaryOperatorExpresion(CodeBinaryOperatorExpression codeExpression, CodeWriter codeWriter, GenerateOptions options)
         {
             if (codeExpression == null) { return; }
@@ -45,6 +51,9 @@ namespace Panosen.CodeDom.Java.Engine
             codeWriter.Write(codeExpression.Left ?? string.Empty).Write(Marks.WHITESPACE).Write(codeExpression.Operator?.Value ?? string.Empty).Write(Marks.WHITESPACE).Write(codeExpression.Right ?? string.Empty);
         }
 
+        /// <summary>
+        /// GenerateCodeFieldReferenceExpression
+        /// </summary>
         public void GenerateCodeFieldReferenceExpression(CodeFieldReferenceExpression codeExpression, CodeWriter codeWriter, GenerateOptions options)
         {
             if (codeExpression == null) { return; }
@@ -59,6 +68,9 @@ namespace Panosen.CodeDom.Java.Engine
             codeWriter.Write(codeExpression.FieldName);
         }
 
+        /// <summary>
+        /// GenerateCodeThisReferenceExpression
+        /// </summary>
         public void GenerateCodeThisReferenceExpression(CodeThisReferenceExpression codeExpression, CodeWriter codeWriter, GenerateOptions options)
         {
             if (codeExpression == null) { return; }

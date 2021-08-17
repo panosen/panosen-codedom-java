@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
+    /// <summary>
+    /// CodeValue
+    /// </summary>
     public class CodeValue
     {
         /// <summary>

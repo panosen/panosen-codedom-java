@@ -7,18 +7,13 @@ using System.Threading.Tasks;
 namespace Panosen.CodeDom.Java
 {
     /// <summary>
-    /// catch
+    /// PushIndentStepBuilder
     /// </summary>
-    public class CatchStepBuilder : StepBuilder
+    public class PushIndentStepBuilder : StepBuilderCollection
     {
         /// <summary>
-        /// Exception
+        /// Key
         /// </summary>
-        public string ExceptionType { get; set; }
-
-        /// <summary>
-        /// e
-        /// </summary>
-        public string ExceptionName { get; set; }
+        public string Key { get; set; }
     }
 }

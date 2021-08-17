@@ -45,12 +45,12 @@ namespace Panosen.CodeDom.Java.Engine
 
             if (codeField.IsFinal)
             {
-                codeWriter.Write(KEYWORD_FINAL).Write(Marks.WHITESPACE);
+                codeWriter.Write(Keywords.FINAL).Write(Marks.WHITESPACE);
             }
 
             if (codeField.IsStatic)
             {
-                codeWriter.Write(KEYWORD_STATIC).Write(Marks.WHITESPACE);
+                codeWriter.Write(Keywords.STATIC).Write(Marks.WHITESPACE);
             }
 
             codeWriter.Write(codeField.Type ?? string.Empty).Write(Marks.WHITESPACE);

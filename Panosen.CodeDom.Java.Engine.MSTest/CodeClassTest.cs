@@ -178,14 +178,14 @@ public class Student {
                     codeMethod.AddParameter("int", $"p{j + 1}");
                 }
 
-                codeMethod.StepBuilders = new List<StepBuilder>();
+                codeMethod.StepBuilders = new List<StepBuilderOrCollection>();
             }
 
             codeClass.AddConstructor(new CodeMethod
             {
                 Name = "TheConstructor",
                 AccessModifiers = AccessModifiers.Public,
-                StepBuilders = new List<StepBuilder>()
+                StepBuilders = new List<StepBuilderOrCollection>()
             });
 
             return codeClass;

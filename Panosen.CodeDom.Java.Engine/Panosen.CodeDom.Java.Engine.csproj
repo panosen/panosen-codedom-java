@@ -4,7 +4,7 @@
     <TargetFrameworks>net472;netstandard2.0</TargetFrameworks>
     <AssemblyName>Panosen.CodeDom.Java.Engine</AssemblyName>
     <RootNamespace>Panosen.CodeDom.Java.Engine</RootNamespace>
-    <Version>0.1.1</Version>
+    <Version>0.2.0</Version>
     <Authors>harriszhang@live.cn</Authors>
     <Company>harriszhang@live.cn</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Panosen.CodeDom" Version="1.5.1" />
+    <PackageReference Include="Panosen.CodeDom" Version="1.6.0" />
     <PackageReference Include="Panosen.Text.Extension" Version="1.0.0" />
   </ItemGroup>
 

@@ -8,6 +8,9 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
+        /// <summary>
+        /// GenerateStatementStepBuilder
+        /// </summary>
         public void GenerateStatementStepBuilder(StatementStepBuilder statementStepBuilder, CodeWriter codeWriter, GenerateOptions options)
         {
             codeWriter.Write(options.IndentString).WriteLine(statementStepBuilder.Statement);

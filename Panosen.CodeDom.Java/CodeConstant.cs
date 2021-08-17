@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Panosen.CodeDom.Java
 {
+    /// <summary>
+    /// CodeConstant
+    /// </summary>
     public class CodeConstant : CodeObject
     {
         /// <summary>
@@ -13,8 +16,14 @@ namespace Panosen.CodeDom.Java
         /// </summary>
         public AccessModifiers AccessModifiers { get; set; }
 
+        /// <summary>
+        /// Type
+        /// </summary>
         public string Type { get; set; }
 
+        /// <summary>
+        /// Value
+        /// </summary>
         public string Value { get; set; }
     }
 }

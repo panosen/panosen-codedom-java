@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 namespace Panosen.CodeDom.Java
 {
     /// <summary>
-    /// CodeValueType
+    /// catch
     /// </summary>
-    public enum CodeValueType
+    public class CatchStepBuilder : StepBuilderCollection
     {
         /// <summary>
-        /// 保持原样
+        /// Exception
         /// </summary>
-        PLAIN = 0,
+        public string ExceptionType { get; set; }
 
         /// <summary>
-        /// 需要用双引号包裹
+        /// e
         /// </summary>
-        STRING = 1
+        public string ExceptionName { get; set; }
     }
 }
