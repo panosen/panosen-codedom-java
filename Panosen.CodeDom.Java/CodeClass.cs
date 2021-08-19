@@ -305,6 +305,26 @@ namespace Panosen.CodeDom.Java
         }
 
         /// <summary>
+        /// AddFields
+        /// </summary>
+        public static CodeClass AddFields(this CodeClass codeClass, List<CodeField> codeFields)
+        {
+            if (codeFields == null || codeFields.Count == 0)
+            {
+                return codeClass;
+            }
+
+            if (codeClass.FieldList == null)
+            {
+                codeClass.FieldList = new List<CodeField>();
+            }
+
+            codeClass.FieldList.AddRange(codeFields);
+
+            return codeClass;
+        }
+
+        /// <summary>
         /// AddField
         /// </summary>
         public static CodeField AddField(this CodeClass codeClass, string type, string name, bool isFinal = false, bool isStatic = false, string summary = null, AccessModifiers accessModifiers = null)
