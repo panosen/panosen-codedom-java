@@ -243,6 +243,26 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// AddProperty
         /// </summary>
+        public static CodeClass AddProperties(this CodeClass codeClass, List<CodeProperty> properties)
+        {
+            if (properties == null || properties.Count == 0)
+            {
+                return codeClass;
+            }
+
+            if (codeClass.PropertyList == null)
+            {
+                codeClass.PropertyList = new List<CodeProperty>();
+            }
+
+            codeClass.PropertyList.AddRange(properties);
+
+            return codeClass;
+        }
+
+        /// <summary>
+        /// AddProperty
+        /// </summary>
         public static CodeProperty AddProperty(this CodeClass codeClass, string type, string name, bool isStatic = false, string summary = null, string plainValue = null, string stringValue = null)
         {
             if (codeClass.PropertyList == null)
