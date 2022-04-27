@@ -131,7 +131,7 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 添加一个类
         /// </summary>
-        public static CodeClass AddClass(this CodeFile codeFile, string name = null)
+        public static CodeClass AddClass(this CodeFile codeFile, string name = null, string summary = null)
         {
             if (codeFile.ClassList == null)
             {
@@ -140,10 +140,45 @@ namespace Panosen.CodeDom.Java
 
             CodeClass codeClass = new CodeClass();
             codeClass.Name = name;
+            codeClass.Summary = summary;
 
             codeFile.ClassList.Add(codeClass);
 
             return codeClass;
+        }
+
+        /// <summary>
+        /// 添加一个枚举
+        /// </summary>
+        public static CodeFile AddEnum(this CodeFile codeFile, CodeEnum codeEnum)
+        {
+            if (codeFile.EnumList == null)
+            {
+                codeFile.EnumList = new List<CodeEnum>();
+            }
+
+            codeFile.EnumList.Add(codeEnum);
+
+            return codeFile;
+        }
+
+        /// <summary>
+        /// 添加一个枚举
+        /// </summary>
+        public static CodeEnum AddEnum(this CodeFile codeFile, string name = null, string summary = null)
+        {
+            if (codeFile.EnumList == null)
+            {
+                codeFile.EnumList = new List<CodeEnum>();
+            }
+
+            CodeEnum codeEnum = new CodeEnum();
+            codeEnum.Name = name;
+            codeEnum.Summary = summary;
+
+            codeFile.EnumList.Add(codeEnum);
+
+            return codeEnum;
         }
     }
 }
