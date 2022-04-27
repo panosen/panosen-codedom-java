@@ -20,9 +20,9 @@ namespace Panosen.CodeDom.Java.Engine
             GenerateSummary(codeConstant.Summary, codeWriter, options);
             codeWriter.Write(options.IndentString);
 
-            if (codeConstant.AccessModifiers != null)
+            if (codeConstant.AccessModifiers != AccessModifiers.None)
             {
-                codeWriter.Write(codeConstant.AccessModifiers.Value).Write(Marks.WHITESPACE);
+                codeWriter.Write(codeConstant.AccessModifiers.Value()).Write(Marks.WHITESPACE);
             }
 
             codeWriter.Write(Keywords.CONST).Write(Marks.WHITESPACE);

@@ -106,5 +106,25 @@ namespace Panosen.CodeDom.Java.Engine
         /// synchronized
         /// </summary>
         public const string SYNCHRONIZED = "synchronized";
+
+        /// <summary>
+        /// enum
+        /// </summary>
+        public const string ENUM = "enum";
+
+        /// <summary>
+        /// new
+        /// </summary>
+        public const string NEW = "new";
+
+        /// <summary>
+        /// public
+        /// </summary>
+        public const string PUBLIC = "public";
+
+        /// <summary>
+        /// private
+        /// </summary>
+        public const string PRIVATE = "private";
     }
 }

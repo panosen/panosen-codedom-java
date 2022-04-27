@@ -24,9 +24,9 @@ namespace Panosen.CodeDom.Java.Engine
 
             codeWriter.Write(options.IndentString);
 
-            if (codeInterface.AccessModifiers != null)
+            if (codeInterface.AccessModifiers != AccessModifiers.None)
             {
-                codeWriter.Write(codeInterface.AccessModifiers.Value).Write(Marks.WHITESPACE);
+                codeWriter.Write(codeInterface.AccessModifiers.Value()).Write(Marks.WHITESPACE);
             }
 
             codeWriter.Write(Keywords.INTERFACE).Write(Marks.WHITESPACE).Write(codeInterface.Name ?? string.Empty);

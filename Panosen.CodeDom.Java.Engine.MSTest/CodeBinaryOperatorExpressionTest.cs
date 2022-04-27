@@ -9,30 +9,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Panosen.CodeDom.Java.Engine.MSTest
 {
     [TestClass]
-    public class CodeBinaryOperatorExpressionTest
+    public class CodeBinaryOperatorExpressionTest: UTBase
     {
-        [TestMethod]
-        public void Test()
-        {
-            var option = GetData();
-
-            StringBuilder builder = new StringBuilder();
-
-            new JavaCodeEngine().Generate(option, builder);
-
-            var actual = builder.ToString();
-
-            var expected = PrepareExpected();
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        private object PrepareExpected()
+        protected override string PrepareExpected()
         {
             return @"a + b";
         }
 
-        public Code GetData()
+        protected override Code PrepareCode()
         {
             CodeBinaryOperatorExpression codeExpression = new CodeBinaryOperatorExpression();
             codeExpression.Operator = EnumBinaryOperator.Add;

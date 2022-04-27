@@ -75,6 +75,15 @@ namespace Panosen.CodeDom.Java.Engine
                     GenerateInterface(codeInterface, codeWriter, options);
                 }
             }
+
+            if (codeFile.EnumList != null && codeFile.EnumList.Count > 0)
+            {
+                foreach (var codeEnum in codeFile.EnumList)
+                {
+                    codeWriter.WriteLine();
+                    GenerateEnum(codeEnum, codeWriter, options);
+                }
+            }
         }
 
         private static void AddImportList(List<string> targetUsingList, List<string> sourceUsingList)

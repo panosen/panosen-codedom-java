@@ -9,25 +9,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Panosen.CodeDom.Java.Engine.MSTest
 {
     [TestClass]
-    public class CodeInterfaceTest
+    public class CodeInterfaceTest : UTBase
     {
-        [TestMethod]
-        public void Test()
-        {
-            var option = GetData();
-
-            StringBuilder builder = new StringBuilder();
-
-            new JavaCodeEngine().Generate(option, builder);
-
-            var actual = builder.ToString();
-
-            var expected = PrepareExpected();
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        private object PrepareExpected()
+        protected override string PrepareExpected()
         {
             return @"/**
  * 学生
@@ -51,7 +35,8 @@ public interface IStudentRepository {
 }
 ";
         }
-        public Code GetData()
+
+        protected override Code PrepareCode()
         {
             CodeInterface codeInterface = new CodeInterface();
             codeInterface.Name = "IStudentRepository";

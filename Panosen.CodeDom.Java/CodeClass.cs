@@ -327,7 +327,9 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// AddField
         /// </summary>
-        public static CodeField AddField(this CodeClass codeClass, string type, string name, bool isFinal = false, bool isStatic = false, string summary = null, AccessModifiers accessModifiers = null)
+        public static CodeField AddField(this CodeClass codeClass,
+            string type, string name, bool isFinal = false, bool isStatic = false, string summary = null,
+            AccessModifiers accessModifiers = AccessModifiers.None)
         {
             if (codeClass.FieldList == null)
             {
@@ -365,7 +367,9 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// AddConstant
         /// </summary>
-        public static CodeConstant AddConstant(this CodeClass codeClass, string type, string name, string value, string summary = null, AccessModifiers accessModifiers = null)
+        public static CodeConstant AddConstant(this CodeClass codeClass,
+            string type, string name, string value, string summary = null,
+            AccessModifiers accessModifiers = AccessModifiers.None)
         {
             if (codeClass.ConstantList == null)
             {

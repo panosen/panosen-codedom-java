@@ -42,6 +42,11 @@ namespace Panosen.CodeDom.Java
         public List<CodeInterface> InterfaceList { get; set; }
 
         /// <summary>
+        /// 枚举
+        /// </summary>
+        public List<CodeEnum> EnumList { get; set; }
+
+        /// <summary>
         /// 格言
         /// </summary>
         public List<string> Mottos { get; set; }

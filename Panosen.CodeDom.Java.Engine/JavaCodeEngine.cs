@@ -37,6 +37,12 @@ namespace Panosen.CodeDom.Java.Engine
                 GenerateMethod(code as CodeMethod, codeWriter, options);
                 return;
             }
+
+            if (code is CodeEnum)
+            {
+                GenerateEnum(code as CodeEnum, codeWriter, options);
+                return;
+            }
         }
     }
 }

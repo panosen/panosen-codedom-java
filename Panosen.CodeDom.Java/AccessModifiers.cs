@@ -9,30 +9,53 @@ namespace Panosen.CodeDom.Java
     /// <summary>
     /// 访问修饰符
     /// </summary>
-    public class AccessModifiers
+    public enum AccessModifiers
     {
         /// <summary>
-        /// Value
+        /// None
         /// </summary>
-        public string Value { get; private set; }
-
-        private AccessModifiers()
-        {
-        }
+        None = 0,
 
         /// <summary>
         /// Public
         /// </summary>
-        public static readonly AccessModifiers Public = new AccessModifiers { Value = "public" };
+        Public = 1,
 
         /// <summary>
         /// Private
         /// </summary>
-        public static readonly AccessModifiers Private = new AccessModifiers { Value = "private" };
+        Private = 2,
 
         /// <summary>
         /// Protected
         /// </summary>
-        public static readonly AccessModifiers Protected = new AccessModifiers { Value = "protected" };
+        Protected = 3
+    }
+
+    /// <summary>
+    /// AccessModifiersExtension
+    /// </summary>
+    public static class AccessModifiersExtension
+    {
+        /// <summary>
+        /// 值
+        /// </summary>
+        /// <param name="accessModifiers"></param>
+        /// <returns></returns>
+        public static string Value(this AccessModifiers accessModifiers)
+        {
+            switch (accessModifiers)
+            {
+                case AccessModifiers.Public:
+                    return "public";
+                case AccessModifiers.Private:
+                    return "private";
+                case AccessModifiers.Protected:
+                    return "protected";
+                case AccessModifiers.None:
+                default:
+                    return string.Empty;
+            }
+        }
     }
 }

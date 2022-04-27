@@ -34,13 +34,13 @@ namespace Panosen.CodeDom.Java.Engine
 
             codeWriter.Write(options.IndentString);
 
-            if (codeProperty.AccessModifiers != null)
+            if (codeProperty.AccessModifiers != AccessModifiers.None)
             {
-                codeWriter.Write(codeProperty.AccessModifiers.Value).Write(Marks.WHITESPACE);
+                codeWriter.Write(codeProperty.AccessModifiers.Value()).Write(Marks.WHITESPACE);
             }
             else
             {
-                codeWriter.Write(AccessModifiers.Private.Value).Write(Marks.WHITESPACE);
+                codeWriter.Write(AccessModifiers.Private.Value()).Write(Marks.WHITESPACE);
             }
 
             if (codeProperty.IsStatic)
