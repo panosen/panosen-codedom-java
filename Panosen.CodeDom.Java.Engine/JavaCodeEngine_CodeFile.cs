@@ -40,9 +40,9 @@ namespace Panosen.CodeDom.Java.Engine
             }
 
             List<string> usingList = new List<string>();
-            AddImportList(usingList, codeFile.SystemImportList);
-            AddImportList(usingList, codeFile.MavenImportList);
-            AddImportList(usingList, codeFile.ProjectImportList);
+            AddImportList(usingList, codeFile.SystemImportList, codeFile.PackageName);
+            AddImportList(usingList, codeFile.MavenImportList, codeFile.PackageName);
+            AddImportList(usingList, codeFile.ProjectImportList, codeFile.PackageName);
 
             if (usingList.Count > 0)
             {
@@ -86,14 +86,14 @@ namespace Panosen.CodeDom.Java.Engine
             }
         }
 
-        private static void AddImportList(List<string> targetUsingList, List<string> sourceUsingList)
+        private static void AddImportList(List<string> targetUsingList, Dictionary<string, HashSet<string>> packageList, string packageName)
         {
-            if (sourceUsingList == null || sourceUsingList.Count == 0)
+            if (packageList == null || packageList.Count == 0)
             {
                 return;
             }
 
-            var lines = sourceUsingList.Where(v => !targetUsingList.Contains(v)).Distinct().OrderBy(v => v).ToList();
+            var lines = packageList.OrderBy(v => v.Key).ToList();
             if (lines.Count == 0)
             {
                 return;
@@ -101,7 +101,17 @@ namespace Panosen.CodeDom.Java.Engine
 
             targetUsingList.Add(string.Empty);
 
-            targetUsingList.AddRange(lines);
+            foreach (var package in packageList)
+            {
+                if (package.Key == packageName)
+                {
+                    continue;
+                }
+                foreach (var name in package.Value.OrderBy(v => v))
+                {
+                    targetUsingList.Add(package.Key + "." + name);
+                }
+            }
         }
     }
 }

@@ -19,17 +19,17 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 系统引用
         /// </summary>
-        public List<string> SystemImportList { get; set; }
+        public Dictionary<string, HashSet<string>> SystemImportList { get; set; }
 
         /// <summary>
         /// 从nuget包里面的引用
         /// </summary>
-        public List<string> MavenImportList { get; set; }
+        public Dictionary<string, HashSet<string>> MavenImportList { get; set; }
 
         /// <summary>
         /// 当前项目的引用
         /// </summary>
-        public List<string> ProjectImportList { get; set; }
+        public Dictionary<string, HashSet<string>> ProjectImportList { get; set; }
 
         /// <summary>
         /// 类
@@ -60,7 +60,7 @@ namespace Panosen.CodeDom.Java
     {
 
         /// <summary>
-        /// 添加一个nuget引用
+        /// 添加一个格言
         /// </summary>
         public static CodeFile AddMotto(this CodeFile codeFile, string motto)
         {
@@ -75,42 +75,255 @@ namespace Panosen.CodeDom.Java
         }
 
         /// <summary>
-        /// 添加一个nuget引用
+        /// 添加一个系统引用
         /// </summary>
-        public static void AddSystemImport(this CodeFile codeFile, string systemImport)
+        public static void AddSystemImport(this CodeFile codeFile, string fullName)
         {
             if (codeFile.SystemImportList == null)
             {
-                codeFile.SystemImportList = new List<string>();
+                codeFile.SystemImportList = new Dictionary<string, HashSet<string>>();
             }
 
-            codeFile.SystemImportList.Add(systemImport);
+            var packageName = fullName.Substring(0, fullName.LastIndexOf("."));
+            var name = fullName.Substring(fullName.LastIndexOf(".") + 1);
+
+            if (!codeFile.SystemImportList.ContainsKey(packageName))
+            {
+                codeFile.SystemImportList.Add(packageName, new HashSet<string>());
+            }
+
+            codeFile.SystemImportList[packageName].Add(name);
         }
 
         /// <summary>
-        /// 添加一个nuget引用
+        /// 添加一个系统引用
         /// </summary>
-        public static void AddMavenImport(this CodeFile codeFile, string mavenImport)
+        public static void AddSystemImport(this CodeFile codeFile, string packageName, string name)
+        {
+            if (codeFile.SystemImportList == null)
+            {
+                codeFile.SystemImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            if (!codeFile.SystemImportList.ContainsKey(packageName))
+            {
+                codeFile.SystemImportList.Add(packageName, new HashSet<string>());
+            }
+
+            codeFile.SystemImportList[packageName].Add(name);
+        }
+
+        /// <summary>
+        /// 添加一批系统引用
+        /// </summary>
+        public static void AddSystemImports(this CodeFile codeFile, string packageName, List<string> names)
+        {
+            if (codeFile.SystemImportList == null)
+            {
+                codeFile.SystemImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            if (!codeFile.SystemImportList.ContainsKey(packageName))
+            {
+                codeFile.SystemImportList.Add(packageName, new HashSet<string>());
+            }
+
+            foreach (var name in names)
+            {
+                codeFile.SystemImportList[packageName].Add(name);
+            }
+        }
+
+        /// <summary>
+        /// 添加一批系统引用
+        /// </summary>
+        public static void AddSystemImports(this CodeFile codeFile, Dictionary<string, List<string>> imports)
+        {
+            if (codeFile.SystemImportList == null)
+            {
+                codeFile.SystemImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            foreach (var import in imports)
+            {
+                if (!codeFile.SystemImportList.ContainsKey(import.Key))
+                {
+                    codeFile.SystemImportList.Add(import.Key, new HashSet<string>());
+                }
+
+                foreach (var name in import.Value)
+                {
+                    codeFile.SystemImportList[import.Key].Add(name);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 添加一个maven引用
+        /// </summary>
+        public static void AddMavenImport(this CodeFile codeFile, string fullName)
         {
             if (codeFile.MavenImportList == null)
             {
-                codeFile.MavenImportList = new List<string>();
+                codeFile.MavenImportList = new Dictionary<string, HashSet<string>>();
             }
 
-            codeFile.MavenImportList.Add(mavenImport);
+            var packageName = fullName.Substring(0, fullName.LastIndexOf("."));
+            var name = fullName.Substring(fullName.LastIndexOf(".") + 1);
+
+            if (!codeFile.MavenImportList.ContainsKey(packageName))
+            {
+                codeFile.MavenImportList.Add(packageName, new HashSet<string>());
+            }
+
+            codeFile.MavenImportList[packageName].Add(name);
         }
 
         /// <summary>
-        /// 添加一个nuget引用
+        /// 添加一个maven引用
         /// </summary>
-        public static void AddProjectImport(this CodeFile codeFile, string projectImport)
+        public static void AddMavenImport(this CodeFile codeFile, string packageName, string name)
+        {
+            if (codeFile.MavenImportList == null)
+            {
+                codeFile.MavenImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            if (!codeFile.MavenImportList.ContainsKey(packageName))
+            {
+                codeFile.MavenImportList.Add(packageName, new HashSet<string>());
+            }
+
+            codeFile.MavenImportList[packageName].Add(name);
+        }
+
+        /// <summary>
+        /// 添加一批maven引用
+        /// </summary>
+        public static void AddMavenImports(this CodeFile codeFile, string packageName, List<string> names)
+        {
+            if (codeFile.MavenImportList == null)
+            {
+                codeFile.MavenImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            if (!codeFile.MavenImportList.ContainsKey(packageName))
+            {
+                codeFile.MavenImportList.Add(packageName, new HashSet<string>());
+            }
+
+            foreach (var name in names)
+            {
+                codeFile.MavenImportList[packageName].Add(name);
+            }
+        }
+
+        /// <summary>
+        /// 添加一批maven引用
+        /// </summary>
+        public static void AddMavenImports(this CodeFile codeFile, Dictionary<string, HashSet<string>> imports)
+        {
+            if (codeFile.MavenImportList == null)
+            {
+                codeFile.MavenImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            foreach (var import in imports)
+            {
+                if (!codeFile.MavenImportList.ContainsKey(import.Key))
+                {
+                    codeFile.MavenImportList.Add(import.Key, new HashSet<string>());
+                }
+
+                foreach (var name in import.Value)
+                {
+                    codeFile.MavenImportList[import.Key].Add(name);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 添加一个项目引用
+        /// </summary>
+        public static void AddProjectImport(this CodeFile codeFile, string fullName)
         {
             if (codeFile.ProjectImportList == null)
             {
-                codeFile.ProjectImportList = new List<string>();
+                codeFile.ProjectImportList = new Dictionary<string, HashSet<string>>();
             }
 
-            codeFile.ProjectImportList.Add(projectImport);
+            var packageName = fullName.Substring(0, fullName.LastIndexOf("."));
+            var name = fullName.Substring(fullName.LastIndexOf(".") + 1);
+
+            if (!codeFile.ProjectImportList.ContainsKey(packageName))
+            {
+                codeFile.ProjectImportList.Add(packageName, new HashSet<string>());
+            }
+
+            codeFile.ProjectImportList[packageName].Add(name);
+        }
+
+        /// <summary>
+        /// 添加一个项目引用
+        /// </summary>
+        public static void AddProjectImport(this CodeFile codeFile, string packageName, string name)
+        {
+            if (codeFile.ProjectImportList == null)
+            {
+                codeFile.ProjectImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            if (!codeFile.ProjectImportList.ContainsKey(packageName))
+            {
+                codeFile.ProjectImportList.Add(packageName, new HashSet<string>());
+            }
+
+            codeFile.ProjectImportList[packageName].Add(name);
+        }
+
+        /// <summary>
+        /// 添加一批项目引用
+        /// </summary>
+        public static void AddProjectImports(this CodeFile codeFile, string packageName, List<string> names)
+        {
+            if (codeFile.ProjectImportList == null)
+            {
+                codeFile.ProjectImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            if (!codeFile.ProjectImportList.ContainsKey(packageName))
+            {
+                codeFile.ProjectImportList.Add(packageName, new HashSet<string>());
+            }
+
+            foreach (var name in names)
+            {
+                codeFile.ProjectImportList[packageName].Add(name);
+            }
+        }
+
+        /// <summary>
+        /// 添加一批项目引用
+        /// </summary>
+        public static void AddProjectImports(this CodeFile codeFile, Dictionary<string, HashSet<string>> imports)
+        {
+            if (codeFile.ProjectImportList == null)
+            {
+                codeFile.ProjectImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            foreach (var import in imports)
+            {
+                if (!codeFile.ProjectImportList.ContainsKey(import.Key))
+                {
+                    codeFile.ProjectImportList.Add(import.Key, new HashSet<string>());
+                }
+
+                foreach (var name in import.Value)
+                {
+                    codeFile.ProjectImportList[import.Key].Add(name);
+                }
+            }
         }
 
         /// <summary>
