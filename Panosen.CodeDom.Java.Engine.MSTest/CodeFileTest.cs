@@ -38,6 +38,8 @@ import maven.a2;
 
 import project.a1;
 import project.a2;
+import project.c1;
+import project.c2;
 
 public class T {
 }
@@ -60,6 +62,11 @@ public class T {
             codeFile.AddProjectImport("project.a1");
             codeFile.AddProjectImport("project", "a1");
             codeFile.AddProjectImport("project", "a2");
+
+            List<string> items = new List<string>();
+            items.Add("project.c1");
+            items.Add("project.c2");
+            codeFile.AddProjectImports(items);
 
             codeFile.AddProjectImport("abc.TT");
 

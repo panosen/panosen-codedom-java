@@ -74,6 +74,10 @@ namespace Panosen.CodeDom.Java
             return codeFile;
         }
 
+
+
+        #region 系统引用
+
         /// <summary>
         /// 添加一个系统引用
         /// </summary>
@@ -137,6 +141,30 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 添加一批系统引用
         /// </summary>
+        public static void AddSystemImports(this CodeFile codeFile, List<string> imports)
+        {
+            if (codeFile.SystemImportList == null)
+            {
+                codeFile.SystemImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            foreach (var import in imports)
+            {
+                var packageName = import.Substring(0, import.LastIndexOf("."));
+                var name = import.Substring(import.LastIndexOf(".") + 1);
+
+                if (!codeFile.SystemImportList.ContainsKey(packageName))
+                {
+                    codeFile.SystemImportList.Add(packageName, new HashSet<string>());
+                }
+
+                codeFile.SystemImportList[packageName].Add(name);
+            }
+        }
+
+        /// <summary>
+        /// 添加一批系统引用
+        /// </summary>
         public static void AddSystemImports(this CodeFile codeFile, Dictionary<string, List<string>> imports)
         {
             if (codeFile.SystemImportList == null)
@@ -157,6 +185,10 @@ namespace Panosen.CodeDom.Java
                 }
             }
         }
+
+        #endregion
+
+        #region maven引用
 
         /// <summary>
         /// 添加一个maven引用
@@ -221,7 +253,31 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 添加一批maven引用
         /// </summary>
-        public static void AddMavenImports(this CodeFile codeFile, Dictionary<string, HashSet<string>> imports)
+        public static void AddMavenImports(this CodeFile codeFile, List<string> imports)
+        {
+            if (codeFile.MavenImportList == null)
+            {
+                codeFile.MavenImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            foreach (var import in imports)
+            {
+                var packageName = import.Substring(0, import.LastIndexOf("."));
+                var name = import.Substring(import.LastIndexOf(".") + 1);
+
+                if (!codeFile.MavenImportList.ContainsKey(packageName))
+                {
+                    codeFile.MavenImportList.Add(packageName, new HashSet<string>());
+                }
+
+                codeFile.MavenImportList[packageName].Add(name);
+            }
+        }
+
+        /// <summary>
+        /// 添加一批maven引用
+        /// </summary>
+        public static void AddMavenImports(this CodeFile codeFile, Dictionary<string, List<string>> imports)
         {
             if (codeFile.MavenImportList == null)
             {
@@ -241,6 +297,10 @@ namespace Panosen.CodeDom.Java
                 }
             }
         }
+
+        #endregion
+
+        #region 项目引用
 
         /// <summary>
         /// 添加一个项目引用
@@ -305,7 +365,31 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 添加一批项目引用
         /// </summary>
-        public static void AddProjectImports(this CodeFile codeFile, Dictionary<string, HashSet<string>> imports)
+        public static void AddProjectImports(this CodeFile codeFile, List<string> imports)
+        {
+            if (codeFile.ProjectImportList == null)
+            {
+                codeFile.ProjectImportList = new Dictionary<string, HashSet<string>>();
+            }
+
+            foreach (var import in imports)
+            {
+                var packageName = import.Substring(0, import.LastIndexOf("."));
+                var name = import.Substring(import.LastIndexOf(".") + 1);
+
+                if (!codeFile.ProjectImportList.ContainsKey(packageName))
+                {
+                    codeFile.ProjectImportList.Add(packageName, new HashSet<string>());
+                }
+
+                codeFile.ProjectImportList[packageName].Add(name);
+            }
+        }
+
+        /// <summary>
+        /// 添加一批项目引用
+        /// </summary>
+        public static void AddProjectImports(this CodeFile codeFile, Dictionary<string, List<string>> imports)
         {
             if (codeFile.ProjectImportList == null)
             {
@@ -325,6 +409,10 @@ namespace Panosen.CodeDom.Java
                 }
             }
         }
+
+        #endregion
+
+
 
         /// <summary>
         /// 添加一个类
