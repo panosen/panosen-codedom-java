@@ -106,6 +106,21 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// AddInterface
         /// </summary>
+        public static CodeClass AddInterface(this CodeClass codeClass, CodeInterface codeInterface)
+        {
+            if (codeClass.InterfaceList == null)
+            {
+                codeClass.InterfaceList = new List<CodeInterface>();
+            }
+
+            codeClass.InterfaceList.Add(codeInterface);
+
+            return codeClass;
+        }
+
+        /// <summary>
+        /// AddInterface
+        /// </summary>
         public static CodeInterface AddInterface(this CodeClass codeClass, string name, string summary = null)
         {
             if (codeClass.InterfaceList == null)
@@ -127,11 +142,11 @@ namespace Panosen.CodeDom.Java
         /// </summary>
         public static CodeClass SetBaseClass(this CodeClass codeClass, string name, string summary = null)
         {
-            CodeClass baseCodeClass = new CodeClass();
-            baseCodeClass.Name = name;
-            baseCodeClass.Summary = summary;
+            CodeClass baseClass = new CodeClass();
+            baseClass.Name = name;
+            baseClass.Summary = summary;
 
-            codeClass.BaseClass = baseCodeClass;
+            codeClass.BaseClass = baseClass;
 
             return codeClass;
         }
