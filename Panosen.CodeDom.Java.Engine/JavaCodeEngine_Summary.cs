@@ -11,9 +11,6 @@ namespace Panosen.CodeDom.Java.Engine
         /// <summary>
         /// 生成摘要
         /// </summary>
-        /// <param name="summary"></param>
-        /// <param name="codeWriter"></param>
-        /// <param name="options"></param>
         public void GenerateSummary(string summary, CodeWriter codeWriter, GenerateOptions options = null)
         {
             if (string.IsNullOrEmpty(summary))

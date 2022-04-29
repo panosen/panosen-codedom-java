@@ -26,23 +26,4 @@ namespace Panosen.CodeDom.Java
         /// </summary>
         public string End { get; set; }
     }
-
-    /// <summary>
-    /// ForStepBuilderExtension
-    /// </summary>
-    public static class ForStepBuilderExtension
-    {
-        /// <summary>
-        /// For
-        /// </summary>
-        public static TForStepBuilder For<TForStepBuilder>(this TForStepBuilder forStepBuilder, string start, string middle, string end)
-            where TForStepBuilder : ForStepBuilder
-        {
-            forStepBuilder.Start = start;
-            forStepBuilder.Middle = middle;
-            forStepBuilder.End = end;
-
-            return forStepBuilder;
-        }
-    }
 }

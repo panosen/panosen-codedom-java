@@ -14,7 +14,7 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 类型
         /// </summary>
-        public string Type { get; set; }
+        public string ReturnType { get; set; }
 
         /// <summary>
         /// 访问修饰符
@@ -64,7 +64,7 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// AddParameter
         /// </summary>
-        public static CodeParameter AddParameter(this CodeMethod codeMethod, CodeParameter parameter)
+        public static CodeMethod AddParameter(this CodeMethod codeMethod, CodeParameter parameter)
         {
             if (codeMethod.Parameters == null)
             {
@@ -73,7 +73,7 @@ namespace Panosen.CodeDom.Java
 
             codeMethod.Parameters.Add(parameter);
 
-            return parameter;
+            return codeMethod;
         }
 
         /// <summary>

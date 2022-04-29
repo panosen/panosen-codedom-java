@@ -11,7 +11,7 @@ namespace Panosen.CodeDom.Java.Engine
         /// <summary>
         /// GenerateMethod
         /// </summary>
-        public void GenerateMethod(CodeMethod codeMethod, CodeWriter codeWriter, GenerateOptions options = null)
+        public void GenerateConstructor(CodeMethod codeMethod, CodeWriter codeWriter, GenerateOptions options = null)
         {
             if (codeMethod == null) { return; }
             if (codeWriter == null) { return; }
@@ -51,15 +51,6 @@ namespace Panosen.CodeDom.Java.Engine
             if (codeMethod.IsStatic)
             {
                 codeWriter.Write(Keywords.STATIC).Write(Marks.WHITESPACE);
-            }
-
-            if (!string.IsNullOrEmpty(codeMethod.ReturnType))
-            {
-                codeWriter.Write(codeMethod.ReturnType).Write(Marks.WHITESPACE);
-            }
-            else
-            {
-                codeWriter.Write(Keywords.VOID).Write(Marks.WHITESPACE);
             }
 
             codeWriter.Write(codeMethod.Name ?? string.Empty);

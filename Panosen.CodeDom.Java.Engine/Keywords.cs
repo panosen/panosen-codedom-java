@@ -126,5 +126,10 @@ namespace Panosen.CodeDom.Java.Engine
         /// private
         /// </summary>
         public const string PRIVATE = "private";
+
+        /// <summary>
+        /// void
+        /// </summary>
+        public const string VOID = "void";
     }
 }

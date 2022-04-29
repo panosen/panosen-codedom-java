@@ -80,7 +80,9 @@ namespace Panosen.CodeDom.Java
                 stepBuilderCollection.StepBuilders = new List<StepBuilderOrCollection>();
             }
 
-            stepBuilderCollection.StepBuilders.Add(new StatementStepBuilder(statement));
+            StatementStepBuilder statementStepBuilder = new StatementStepBuilder();
+            statementStepBuilder.Statement = statement;
+            stepBuilderCollection.StepBuilders.Add(statementStepBuilder);
 
             return stepBuilderCollection;
         }
@@ -153,11 +155,11 @@ namespace Panosen.CodeDom.Java
                 stepBuilderCollection.StepBuilders = new List<StepBuilderOrCollection>();
             }
 
-            TryStepBuilder ifStepBuilder = new TryStepBuilder();
+            TryStepBuilder tryStepBuilder = new TryStepBuilder();
 
-            stepBuilderCollection.StepBuilders.Add(ifStepBuilder);
+            stepBuilderCollection.StepBuilders.Add(tryStepBuilder);
 
-            return ifStepBuilder;
+            return tryStepBuilder;
         }
 
         /// <summary>
@@ -166,11 +168,6 @@ namespace Panosen.CodeDom.Java
         public static ForeachStepBuilder StepForeach<TStepBuilderCollection>(this TStepBuilderCollection stepBuilderCollection, string item, string items)
             where TStepBuilderCollection : IStepBuilderCollection
         {
-            if (stepBuilderCollection.StepBuilders == null)
-            {
-                stepBuilderCollection.StepBuilders = new List<StepBuilderOrCollection>();
-            }
-
             return StepForeach(stepBuilderCollection, null, item, items);
         }
 

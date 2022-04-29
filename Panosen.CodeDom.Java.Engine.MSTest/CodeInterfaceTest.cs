@@ -50,7 +50,7 @@ public interface IStudentRepository {
                 codeInterface.MethodList.Add(codeMethod);
 
                 codeMethod.Name = $"Method{i}";
-                codeMethod.Type = "int";
+                codeMethod.ReturnType = "int";
                 codeMethod.Summary = $"方法 {i}";
 
                 codeMethod.Parameters = new List<CodeParameter>();

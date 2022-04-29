@@ -100,7 +100,7 @@ namespace Panosen.CodeDom.Java.Engine
                 foreach (var codeConstructor in codeClass.ConstructorList)
                 {
                     codeWriter.WriteLine();
-                    GenerateMethod(codeConstructor, codeWriter, options);
+                    GenerateConstructor(codeConstructor, codeWriter, options);
                 }
             }
 

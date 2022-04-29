@@ -20,15 +20,33 @@ namespace Panosen.CodeDom.Java.Engine
             if (codeWriter == null) { return; }
             options = options ?? new GenerateOptions();
 
-            GenerateSummary("Get " + codeProperty.Summary, codeWriter, options);
-
-            GenerateMethod(BuildMethod_GetProperty(codeProperty), codeWriter, options);
+            {
+                var codeMethod = BuildMethod_GetProperty(codeProperty);
+                if (!string.IsNullOrEmpty(codeProperty.Summary))
+                {
+                    codeMethod.Summary = "[getter] " + codeProperty.Summary;
+                }
+                else if (options.UseJavaCoc)
+                {
+                    codeMethod.Summary = "[getter] " + codeProperty.Name;
+                }
+                GenerateMethod(codeMethod, codeWriter, options);
+            }
 
             codeWriter.WriteLine();
 
-            GenerateSummary("Set " + codeProperty.Summary, codeWriter, options);
-
-            GenerateMethod(BuildMethod_SetMethod(codeProperty), codeWriter, options);
+            {
+                var codeMethod = BuildMethod_SetMethod(codeProperty);
+                if (!string.IsNullOrEmpty(codeProperty.Summary))
+                {
+                    codeMethod.Summary = "[setter] " + codeProperty.Summary;
+                }
+                else if (options.UseJavaCoc)
+                {
+                    codeMethod.Summary = "[setter] " + codeProperty.Name;
+                }
+                GenerateMethod(codeMethod, codeWriter, options);
+            }
         }
 
         private CodeMethod BuildMethod_GetProperty(CodeProperty codeProperty)
@@ -36,7 +54,7 @@ namespace Panosen.CodeDom.Java.Engine
             CodeMethod codeMethod = new CodeMethod();
             codeMethod.AccessModifiers = AccessModifiers.Public;
             codeMethod.IsStatic = codeProperty.IsStatic;
-            codeMethod.Type = codeProperty.Type;
+            codeMethod.ReturnType = codeProperty.Type;
             codeMethod.Name = $"get{codeProperty.Name}";
 
             codeMethod.StepStatement($"return {codeProperty.Name.ToLowerCamelCase()};");
@@ -49,7 +67,8 @@ namespace Panosen.CodeDom.Java.Engine
             CodeMethod codeMethod = new CodeMethod();
             codeMethod.AccessModifiers = AccessModifiers.Public;
             codeMethod.IsStatic = codeProperty.IsStatic;
-            codeMethod.Type = "void";
+            codeMethod.ReturnType = "void";
+
             codeMethod.Name = $"set{codeProperty.Name}";
 
             codeMethod.AddParameter(codeProperty.Type, codeProperty.Name.ToLowerCamelCase());

@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Panosen.CodeDom.Java.Engine.MSTest
 {
     [TestClass]
-    public class CodeClassTest : UTBase
+    public class UT_CodeClass1 : UTBase
     {
         protected override string PrepareExpected()
         {
@@ -44,9 +44,6 @@ public class Student {
         ""string_field_1"" +
         ""string_field_2"";
 
-    /**
-     * 属性 0
-     */
     private int property0;
 
     /**
@@ -57,29 +54,23 @@ public class Student {
     public TheConstructor() {
     }
 
-    /**
-     * Get 属性 0
-     */
     public int getProperty0() {
         return property0;
     }
 
-    /**
-     * Set 属性 0
-     */
     public void setProperty0(int property0) {
         this.property0 = property0;
     }
 
     /**
-     * Get 属性 1
+     * [getter] 属性 1
      */
     public int getProperty1() {
         return property1;
     }
 
     /**
-     * Set 属性 1
+     * [setter] 属性 1
      */
     public void setProperty1(int property1) {
         this.property1 = property1;
@@ -120,7 +111,11 @@ public class Student {
 
             for (int i = 0; i < 2; i++)
             {
-                codeClass.AddProperty("int", $"Property{i}", summary: $"属性 {i}");
+                var codeParam = codeClass.AddProperty("int", $"Property{i}");
+                if (i == 1)
+                {
+                    codeParam.Summary = $"属性 {i}";
+                }
             }
 
             for (int i = 0; i < 2; i++)
@@ -155,7 +150,7 @@ public class Student {
             for (int i = 0; i < 3; i++)
             {
                 var codeMethod = codeClass.AddMethod($"Method{i}", summary: $"方法 {i}");
-                codeMethod.Type = "int";
+                codeMethod.ReturnType = "int";
                 codeMethod.AccessModifiers = AccessModifiers.Public;
 
                 for (int j = 0; j < 3; j++)

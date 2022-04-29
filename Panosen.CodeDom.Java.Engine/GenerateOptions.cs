@@ -19,6 +19,11 @@ namespace Panosen.CodeDom.Java.Engine
         private int indentSize = 0;
 
         /// <summary>
+        /// 强制加注释
+        /// </summary>
+        public bool UseJavaCoc { get; set; }
+
+        /// <summary>
         /// 缩进个数
         /// </summary>
         public int IndentSize

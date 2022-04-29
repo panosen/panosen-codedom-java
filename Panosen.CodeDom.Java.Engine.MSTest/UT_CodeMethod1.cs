@@ -9,12 +9,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Panosen.CodeDom.Java.Engine.MSTest
 {
     [TestClass]
-    public class CodeMethodTest : UTBase
+    public class UT_CodeMethod1 : UTBase
     {
 
         protected override string PrepareExpected()
         {
-            return @"public TestMethod(string name, int age) {
+            return @"public void TestMethod(string name, int age) {
     name = age.ToString();
     name = age.ToString();
     try {

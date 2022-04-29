@@ -14,14 +14,6 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// Statement
         /// </summary>
-        public string Statement { get; private set; }
-
-        /// <summary>
-        /// StatementStepBuilder
-        /// </summary>
-        public StatementStepBuilder(string statement)
-        {
-            this.Statement = statement;
-        }
+        public string Statement { get; set; }
     }
 }

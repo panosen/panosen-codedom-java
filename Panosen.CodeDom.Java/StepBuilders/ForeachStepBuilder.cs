@@ -26,23 +26,4 @@ namespace Panosen.CodeDom.Java
         /// </summary>
         public string Items { get; set; }
     }
-
-    /// <summary>
-    /// ForeachStepBuilderExtension
-    /// </summary>
-    public static class ForeachStepBuilderExtension
-    {
-        /// <summary>
-        /// Foreach
-        /// </summary>
-        public static TForeachStepBuilder Foreach<TForeachStepBuilder>(this TForeachStepBuilder foreachStepBuilder, string type, string item, string items)
-            where TForeachStepBuilder : ForeachStepBuilder
-        {
-            foreachStepBuilder.Type = type;
-            foreachStepBuilder.Item = item;
-            foreachStepBuilder.Items = items;
-
-            return foreachStepBuilder;
-        }
-    }
 }
