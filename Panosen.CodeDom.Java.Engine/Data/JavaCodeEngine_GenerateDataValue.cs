@@ -19,7 +19,7 @@ namespace Panosen.CodeDom.Java.Engine
             }
             else
             {
-                codeWriter.Write(dataValue.Value ?? "null");
+                codeWriter.Write(dataValue.Value);
             }
         }
     }

@@ -13,6 +13,10 @@ namespace Panosen.CodeDom.Java.Engine
         /// </summary>
         public void GenerateAssignStringVariableStepBuilder(AssignStringVariableStepBuilder assignStringVariableStepBuilder, CodeWriter codeWriter, GenerateOptions options)
         {
+            if (assignStringVariableStepBuilder == null) { return; }
+            if (codeWriter == null) { return; }
+            options = options ?? new GenerateOptions();
+
             var items = assignStringVariableStepBuilder.Value.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             if (items.Count == 1)

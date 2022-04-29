@@ -24,7 +24,7 @@ namespace Panosen.CodeDom.Java.Engine
              }
              */
             codeWriter.Write(lamda.Parameter)
-                .Write(Marks.WHITESPACE).Write(Marks.EQUAL).WriteLine(Marks.GREATER_THAN);
+                .Write(Marks.WHITESPACE).Write(Marks.MINUS).WriteLine(Marks.GREATER_THAN);
 
             codeWriter.Write(options.IndentString).WriteLine(Marks.LEFT_BRACE);
             options.PushIndent();

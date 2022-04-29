@@ -8,7 +8,7 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
-        private void GenerateCacheStepBuilder(CatchStepBuilder catchStepBuilder, CodeWriter codeWriter, GenerateOptions options)
+        public void GenerateCacheStepBuilder(CatchStepBuilder catchStepBuilder, CodeWriter codeWriter, GenerateOptions options)
         {
             if (catchStepBuilder == null) { return; }
             if (codeWriter == null) { return; }

@@ -42,10 +42,20 @@ namespace Panosen.CodeDom.Java.Engine
             }
             if (codeMethod.ReturnType != null && codeMethod.ReturnType != "void")
             {
-                codeWriter.Write(options.IndentString).Write(" * @return ").WriteLine(codeMethod.ReturnType);
+                codeWriter.Write(options.IndentString).Write(" * @return ").WriteLine(EncodeSummary(codeMethod.ReturnType));
             }
 
             codeWriter.Write(options.IndentString).WriteLine(" */");
+        }
+
+        private string EncodeSummary(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return string.Empty;
+            }
+
+            return value.Replace("<", "&lt;").Replace(">", "&gt;");
         }
     }
 }

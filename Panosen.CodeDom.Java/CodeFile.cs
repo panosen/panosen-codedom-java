@@ -19,17 +19,17 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 系统引用
         /// </summary>
-        public Dictionary<string, HashSet<string>> SystemImportList { get; set; }
+        public SortedDictionary<string, SortedSet<string>> SystemImportList { get; set; }
 
         /// <summary>
         /// 从nuget包里面的引用
         /// </summary>
-        public Dictionary<string, HashSet<string>> MavenImportList { get; set; }
+        public SortedDictionary<string, SortedSet<string>> MavenImportList { get; set; }
 
         /// <summary>
         /// 当前项目的引用
         /// </summary>
-        public Dictionary<string, HashSet<string>> ProjectImportList { get; set; }
+        public SortedDictionary<string, SortedSet<string>> ProjectImportList { get; set; }
 
         /// <summary>
         /// 类
@@ -85,7 +85,7 @@ namespace Panosen.CodeDom.Java
         {
             if (codeFile.SystemImportList == null)
             {
-                codeFile.SystemImportList = new Dictionary<string, HashSet<string>>();
+                codeFile.SystemImportList = new SortedDictionary<string, SortedSet<string>>();
             }
 
             var packageName = fullName.Substring(0, fullName.LastIndexOf("."));
@@ -93,7 +93,7 @@ namespace Panosen.CodeDom.Java
 
             if (!codeFile.SystemImportList.ContainsKey(packageName))
             {
-                codeFile.SystemImportList.Add(packageName, new HashSet<string>());
+                codeFile.SystemImportList.Add(packageName, new SortedSet<string>());
             }
 
             codeFile.SystemImportList[packageName].Add(name);
@@ -106,12 +106,12 @@ namespace Panosen.CodeDom.Java
         {
             if (codeFile.SystemImportList == null)
             {
-                codeFile.SystemImportList = new Dictionary<string, HashSet<string>>();
+                codeFile.SystemImportList = new SortedDictionary<string, SortedSet<string>>();
             }
 
             if (!codeFile.SystemImportList.ContainsKey(packageName))
             {
-                codeFile.SystemImportList.Add(packageName, new HashSet<string>());
+                codeFile.SystemImportList.Add(packageName, new SortedSet<string>());
             }
 
             codeFile.SystemImportList[packageName].Add(name);
@@ -124,7 +124,7 @@ namespace Panosen.CodeDom.Java
         {
             if (codeFile.SystemImportList == null)
             {
-                codeFile.SystemImportList = new Dictionary<string, HashSet<string>>();
+                codeFile.SystemImportList = new SortedDictionary<string, SortedSet<string>>();
             }
 
             foreach (var import in imports)
@@ -134,7 +134,7 @@ namespace Panosen.CodeDom.Java
 
                 if (!codeFile.SystemImportList.ContainsKey(packageName))
                 {
-                    codeFile.SystemImportList.Add(packageName, new HashSet<string>());
+                    codeFile.SystemImportList.Add(packageName, new SortedSet<string>());
                 }
 
                 codeFile.SystemImportList[packageName].Add(name);
@@ -152,7 +152,7 @@ namespace Panosen.CodeDom.Java
         {
             if (codeFile.MavenImportList == null)
             {
-                codeFile.MavenImportList = new Dictionary<string, HashSet<string>>();
+                codeFile.MavenImportList = new SortedDictionary<string, SortedSet<string>>();
             }
 
             var packageName = fullName.Substring(0, fullName.LastIndexOf("."));
@@ -160,7 +160,7 @@ namespace Panosen.CodeDom.Java
 
             if (!codeFile.MavenImportList.ContainsKey(packageName))
             {
-                codeFile.MavenImportList.Add(packageName, new HashSet<string>());
+                codeFile.MavenImportList.Add(packageName, new SortedSet<string>());
             }
 
             codeFile.MavenImportList[packageName].Add(name);
@@ -173,12 +173,12 @@ namespace Panosen.CodeDom.Java
         {
             if (codeFile.MavenImportList == null)
             {
-                codeFile.MavenImportList = new Dictionary<string, HashSet<string>>();
+                codeFile.MavenImportList = new SortedDictionary<string, SortedSet<string>>();
             }
 
             if (!codeFile.MavenImportList.ContainsKey(packageName))
             {
-                codeFile.MavenImportList.Add(packageName, new HashSet<string>());
+                codeFile.MavenImportList.Add(packageName, new SortedSet<string>());
             }
 
             codeFile.MavenImportList[packageName].Add(name);
@@ -191,7 +191,7 @@ namespace Panosen.CodeDom.Java
         {
             if (codeFile.MavenImportList == null)
             {
-                codeFile.MavenImportList = new Dictionary<string, HashSet<string>>();
+                codeFile.MavenImportList = new SortedDictionary<string, SortedSet<string>>();
             }
 
             foreach (var import in imports)
@@ -201,7 +201,7 @@ namespace Panosen.CodeDom.Java
 
                 if (!codeFile.MavenImportList.ContainsKey(packageName))
                 {
-                    codeFile.MavenImportList.Add(packageName, new HashSet<string>());
+                    codeFile.MavenImportList.Add(packageName, new SortedSet<string>());
                 }
 
                 codeFile.MavenImportList[packageName].Add(name);
@@ -219,7 +219,7 @@ namespace Panosen.CodeDom.Java
         {
             if (codeFile.ProjectImportList == null)
             {
-                codeFile.ProjectImportList = new Dictionary<string, HashSet<string>>();
+                codeFile.ProjectImportList = new SortedDictionary<string, SortedSet<string>>();
             }
 
             var packageName = fullName.Substring(0, fullName.LastIndexOf("."));
@@ -227,7 +227,7 @@ namespace Panosen.CodeDom.Java
 
             if (!codeFile.ProjectImportList.ContainsKey(packageName))
             {
-                codeFile.ProjectImportList.Add(packageName, new HashSet<string>());
+                codeFile.ProjectImportList.Add(packageName, new SortedSet<string>());
             }
 
             codeFile.ProjectImportList[packageName].Add(name);
@@ -240,12 +240,12 @@ namespace Panosen.CodeDom.Java
         {
             if (codeFile.ProjectImportList == null)
             {
-                codeFile.ProjectImportList = new Dictionary<string, HashSet<string>>();
+                codeFile.ProjectImportList = new SortedDictionary<string, SortedSet<string>>();
             }
 
             if (!codeFile.ProjectImportList.ContainsKey(packageName))
             {
-                codeFile.ProjectImportList.Add(packageName, new HashSet<string>());
+                codeFile.ProjectImportList.Add(packageName, new SortedSet<string>());
             }
 
             codeFile.ProjectImportList[packageName].Add(name);
@@ -258,7 +258,7 @@ namespace Panosen.CodeDom.Java
         {
             if (codeFile.ProjectImportList == null)
             {
-                codeFile.ProjectImportList = new Dictionary<string, HashSet<string>>();
+                codeFile.ProjectImportList = new SortedDictionary<string, SortedSet<string>>();
             }
 
             foreach (var import in imports)
@@ -268,7 +268,7 @@ namespace Panosen.CodeDom.Java
 
                 if (!codeFile.ProjectImportList.ContainsKey(packageName))
                 {
-                    codeFile.ProjectImportList.Add(packageName, new HashSet<string>());
+                    codeFile.ProjectImportList.Add(packageName, new SortedSet<string>());
                 }
 
                 codeFile.ProjectImportList[packageName].Add(name);

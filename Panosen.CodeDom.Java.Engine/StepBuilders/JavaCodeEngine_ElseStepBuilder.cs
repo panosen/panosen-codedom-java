@@ -8,7 +8,7 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
-        private void GenerateElseStepBuilder(ElseStepBuilder elseStepBuilder, CodeWriter codeWriter, GenerateOptions options)
+        public void GenerateElseStepBuilder(ElseStepBuilder elseStepBuilder, CodeWriter codeWriter, GenerateOptions options)
         {
             if (elseStepBuilder == null) { return; }
             if (codeWriter == null) { return; }

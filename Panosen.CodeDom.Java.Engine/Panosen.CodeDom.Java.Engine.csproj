@@ -8,7 +8,7 @@
     <Authors>harriszhang@live.cn</Authors>
     <Company>harriszhang@live.cn</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <DocumentationFile>bin\$(Configuration)\Panosen.CodeDom.Java.Engine</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\Panosen.CodeDom.Java.Engine.xml</DocumentationFile>
     <PackageIcon>panosen.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/panosen/panosen-codedom-java</RepositoryUrl>

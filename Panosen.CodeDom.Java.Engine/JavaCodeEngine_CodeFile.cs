@@ -86,15 +86,9 @@ namespace Panosen.CodeDom.Java.Engine
             }
         }
 
-        private static void AddImportList(List<string> targetUsingList, Dictionary<string, HashSet<string>> packageList, string packageName)
+        private static void AddImportList(List<string> targetUsingList, SortedDictionary<string, SortedSet<string>> packageList, string packageName)
         {
             if (packageList == null || packageList.Count == 0)
-            {
-                return;
-            }
-
-            var lines = packageList.OrderBy(v => v.Key).ToList();
-            if (lines.Count == 0)
             {
                 return;
             }
@@ -107,7 +101,7 @@ namespace Panosen.CodeDom.Java.Engine
                 {
                     continue;
                 }
-                foreach (var name in package.Value.OrderBy(v => v))
+                foreach (var name in package.Value)
                 {
                     targetUsingList.Add(package.Key + "." + name);
                 }

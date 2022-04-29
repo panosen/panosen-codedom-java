@@ -8,7 +8,7 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
-        private void GenerateStepBuilderOrCollectionListAsPartialBlock(List<StepBuilderOrCollection> stepBuilders, CodeWriter codeWriter, GenerateOptions options)
+        public void GenerateStepBuilderOrCollectionListAsPartialBlock(List<StepBuilderOrCollection> stepBuilders, CodeWriter codeWriter, GenerateOptions options)
         {
             codeWriter.Write(Marks.WHITESPACE).WriteLine(Marks.LEFT_BRACE);
             options.PushIndent();
@@ -19,7 +19,7 @@ namespace Panosen.CodeDom.Java.Engine
             codeWriter.Write(options.IndentString).Write(Marks.RIGHT_BRACE);
         }
 
-        private void GenerateStepBuilderOrCollectionListAsBlock(List<StepBuilderOrCollection> stepBuilders, CodeWriter codeWriter, GenerateOptions options)
+        public void GenerateStepBuilderOrCollectionListAsBlock(List<StepBuilderOrCollection> stepBuilders, CodeWriter codeWriter, GenerateOptions options)
         {
             codeWriter.Write(options.IndentString).WriteLine(Marks.LEFT_BRACE);
             options.PushIndent();

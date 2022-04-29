@@ -64,6 +64,7 @@ namespace Panosen.CodeDom.Java.Engine
             if (codeExpression.FieldName == null) { return; }
 
             GenerateExpresion(codeExpression.TargetObject, codeWriter, options);
+
             codeWriter.Write(".");
             codeWriter.Write(codeExpression.FieldName);
         }

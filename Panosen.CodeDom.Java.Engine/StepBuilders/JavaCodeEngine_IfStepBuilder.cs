@@ -8,7 +8,13 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
-        private void GenerateIfStepBuilder(IfStepBuilder ifStepBuilder, CodeWriter codeWriter, GenerateOptions options)
+        /// <summary>
+        /// GenerateIfStepBuilder
+        /// </summary>
+        /// <param name="ifStepBuilder"></param>
+        /// <param name="codeWriter"></param>
+        /// <param name="options"></param>
+        public void GenerateIfStepBuilder(IfStepBuilder ifStepBuilder, CodeWriter codeWriter, GenerateOptions options)
         {
             codeWriter.Write(options.IndentString).Write(Keywords.IF).Write(Marks.WHITESPACE)
                 .Write(Marks.LEFT_BRACKET).Write(ifStepBuilder.Condition ?? string.Empty).Write(Marks.RIGHT_BRACKET);
