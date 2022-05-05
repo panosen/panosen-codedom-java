@@ -14,12 +14,12 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// ParamList
         /// </summary>
-        public List<CodeValue> ParamList { get; set; }
+        public List<DataValue> ParamList { get; set; }
 
         /// <summary>
         /// ParamMap
         /// </summary>
-        public Dictionary<string, CodeValue> ParamMap { get; set; }
+        public Dictionary<string, DataValue> ParamMap { get; set; }
     }
 
     /// <summary>
@@ -34,14 +34,10 @@ namespace Panosen.CodeDom.Java
         {
             if (codeAttribute.ParamList == null)
             {
-                codeAttribute.ParamList = new List<CodeValue>();
+                codeAttribute.ParamList = new List<DataValue>();
             }
 
-            CodeValue codeValue = new CodeValue();
-            codeValue.Type = CodeValueType.PLAIN;
-            codeValue.Value = value;
-
-            codeAttribute.ParamList.Add(codeValue);
+            codeAttribute.ParamList.Add(value);
 
             return codeAttribute;
         }
@@ -53,14 +49,10 @@ namespace Panosen.CodeDom.Java
         {
             if (codeAttribute.ParamList == null)
             {
-                codeAttribute.ParamList = new List<CodeValue>();
+                codeAttribute.ParamList = new List<DataValue>();
             }
 
-            CodeValue codeValue = new CodeValue();
-            codeValue.Type = CodeValueType.STRING;
-            codeValue.Value = value;
-
-            codeAttribute.ParamList.Add(codeValue);
+            codeAttribute.ParamList.Add(DataValue.DoubleQuotationString(value));
 
             return codeAttribute;
         }
@@ -72,7 +64,7 @@ namespace Panosen.CodeDom.Java
         {
             if (codeAttribute.ParamMap == null)
             {
-                codeAttribute.ParamMap = new Dictionary<string, CodeValue>();
+                codeAttribute.ParamMap = new Dictionary<string, DataValue>();
             }
 
             if (codeAttribute.ParamMap.ContainsKey(key))
@@ -80,11 +72,7 @@ namespace Panosen.CodeDom.Java
                 return codeAttribute;
             }
 
-            CodeValue codeValue = new CodeValue();
-            codeValue.Type = CodeValueType.PLAIN;
-            codeValue.Value = value;
-
-            codeAttribute.ParamMap.Add(key, codeValue);
+            codeAttribute.ParamMap.Add(key, value);
 
             return codeAttribute;
         }
@@ -96,7 +84,7 @@ namespace Panosen.CodeDom.Java
         {
             if (codeAttribute.ParamMap == null)
             {
-                codeAttribute.ParamMap = new Dictionary<string, CodeValue>();
+                codeAttribute.ParamMap = new Dictionary<string, DataValue>();
             }
 
             if (codeAttribute.ParamMap.ContainsKey(key))
@@ -104,14 +92,9 @@ namespace Panosen.CodeDom.Java
                 return codeAttribute;
             }
 
-            CodeValue codeValue = new CodeValue();
-            codeValue.Type = CodeValueType.STRING;
-            codeValue.Value = value;
-
-            codeAttribute.ParamMap.Add(key, codeValue);
+            codeAttribute.ParamMap.Add(key, DataValue.DoubleQuotationString(value));
 
             return codeAttribute;
         }
-
     }
 }

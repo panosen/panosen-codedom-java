@@ -17,36 +17,56 @@ namespace Panosen.CodeDom.Java.Engine
             if (codeWriter == null) { return; }
             options = options ?? new GenerateOptions();
 
-            List<string> items = new List<string>();
-            if (codeAttribute.ParamList != null && codeAttribute.ParamList.Count > 0)
-            {
-                items.AddRange(codeAttribute.ParamList.Select(v => ToValue(v)));
-            }
-            if (codeAttribute.ParamMap != null && codeAttribute.ParamMap.Count > 0)
-            {
-                items.AddRange(codeAttribute.ParamMap.Select(v => $"{v.Key} = {ToValue(v.Value)}"));
-            }
-            var itemString = items.Count > 0 ? $"({(string.Join(", ", items))})" : string.Empty;
+            var hasListParam = codeAttribute.ParamList != null && codeAttribute.ParamList.Count > 0;
+            var hasMapParam = codeAttribute.ParamMap != null && codeAttribute.ParamMap.Count > 0;
 
-            codeWriter.Write(Marks.AT).Write(codeAttribute.Name ?? string.Empty).Write(itemString);
-        }
+            codeWriter.Write(Marks.LEFT_SQUARE_BRACKET).Write(codeAttribute.Name ?? string.Empty);
 
-        /// <summary>
-        /// ToValue
-        /// </summary>
-        /// <param name="codeValue"></param>
-        /// <returns></returns>
-        public static string ToValue(CodeValue codeValue)
-        {
-            switch (codeValue.Type)
+            if (hasListParam || hasMapParam)
             {
-                case CodeValueType.STRING:
-                    return $"\"{codeValue.Value}\"";
-
-                case CodeValueType.PLAIN:
-                default:
-                    return codeValue.Value;
+                codeWriter.Write(Marks.LEFT_BRACKET);
             }
+
+            if (hasListParam)
+            {
+                var enumerator = codeAttribute.ParamList.GetEnumerator();
+                var moveNext = enumerator.MoveNext();
+                while (moveNext)
+                {
+                    GenerateDataValue(enumerator.Current, codeWriter, options);
+
+                    moveNext = enumerator.MoveNext();
+                    if (moveNext || hasMapParam)
+                    {
+                        codeWriter.Write(Marks.COMMA).Write(Marks.WHITESPACE);
+                    }
+                }
+            }
+
+            if (hasMapParam)
+            {
+                var enumerator = codeAttribute.ParamMap.GetEnumerator();
+                var moveNext = enumerator.MoveNext();
+                while (moveNext)
+                {
+                    codeWriter.Write(enumerator.Current.Key);
+                    codeWriter.Write(Marks.WHITESPACE).Write(Marks.EQUAL).Write(Marks.WHITESPACE);
+                    GenerateDataValue(enumerator.Current.Value, codeWriter, options);
+
+                    moveNext = enumerator.MoveNext();
+                    if (moveNext || hasMapParam)
+                    {
+                        codeWriter.Write(Marks.COMMA).Write(Marks.WHITESPACE);
+                    }
+                }
+            }
+
+            if (hasListParam || hasMapParam)
+            {
+                codeWriter.Write(Marks.RIGHT_BRACKET);
+            }
+
+            codeWriter.Write(Marks.RIGHT_SQUARE_BRACKET);
         }
     }
 }

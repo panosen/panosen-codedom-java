@@ -29,7 +29,7 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 值
         /// </summary>
-        public List<CodeValue> ValueList { get; set; }
+        public List<DataItem> ValueList { get; set; }
 
         /// <summary>
         /// static
@@ -78,14 +78,14 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// AddValue
         /// </summary>
-        public static CodeProperty AddValue(this CodeProperty codeProperty, CodeValue codeValue)
+        public static TCodeProperty AddValue<TCodeProperty>(this TCodeProperty codeProperty, DataItem dataItem) where TCodeProperty : CodeProperty
         {
             if (codeProperty.ValueList == null)
             {
-                codeProperty.ValueList = new List<CodeValue>();
+                codeProperty.ValueList = new List<DataItem>();
             }
 
-            codeProperty.ValueList.Add(codeValue);
+            codeProperty.ValueList.Add(dataItem);
 
             return codeProperty;
         }
@@ -93,17 +93,14 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// AddStringValue
         /// </summary>
-        public static CodeProperty AddStringValue(this CodeProperty codeProperty, string value)
+        public static TCodeProperty AddStringValue<TCodeProperty>(this TCodeProperty codeProperty, string value) where TCodeProperty : CodeProperty
         {
             if (codeProperty.ValueList == null)
             {
-                codeProperty.ValueList = new List<CodeValue>();
+                codeProperty.ValueList = new List<DataItem>();
             }
 
-            CodeValue codeValue = new CodeValue();
-            codeValue.Type = CodeValueType.STRING;
-            codeValue.Value = value;
-            codeProperty.ValueList.Add(codeValue);
+            codeProperty.ValueList.Add(DataValue.DoubleQuotationString(value));
 
             return codeProperty;
         }
@@ -111,17 +108,14 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// AddPlainValue
         /// </summary>
-        public static CodeProperty AddPlainValue(this CodeProperty codeProperty, string value)
+        public static CodeProperty AddPlainValue<TCodeProperty>(this TCodeProperty codeProperty, string value) where TCodeProperty : CodeProperty
         {
             if (codeProperty.ValueList == null)
             {
-                codeProperty.ValueList = new List<CodeValue>();
+                codeProperty.ValueList = new List<DataItem>();
             }
 
-            CodeValue codeValue = new CodeValue();
-            codeValue.Type = CodeValueType.PLAIN;
-            codeValue.Value = value;
-            codeProperty.ValueList.Add(codeValue);
+            codeProperty.ValueList.Add((DataValue)value);
 
             return codeProperty;
         }

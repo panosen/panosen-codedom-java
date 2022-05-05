@@ -40,7 +40,7 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 值
         /// </summary>
-        public List<CodeValue> ValueList { get; set; }
+        public List<DataItem> ValueList { get; set; }
     }
 
     /// <summary>
@@ -84,14 +84,14 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// AddValue
         /// </summary>
-        public static CodeField AddValue(this CodeField codeField, CodeValue codeValue)
+        public static CodeField AddValue(this CodeField codeField, DataItem value)
         {
             if (codeField.ValueList == null)
             {
-                codeField.ValueList = new List<CodeValue>();
+                codeField.ValueList = new List<DataItem>();
             }
 
-            codeField.ValueList.Add(codeValue);
+            codeField.ValueList.Add(value);
 
             return codeField;
         }
@@ -103,13 +103,10 @@ namespace Panosen.CodeDom.Java
         {
             if (codeField.ValueList == null)
             {
-                codeField.ValueList = new List<CodeValue>();
+                codeField.ValueList = new List<DataItem>();
             }
 
-            CodeValue codeValue = new CodeValue();
-            codeValue.Type = CodeValueType.STRING;
-            codeValue.Value = value;
-            codeField.ValueList.Add(codeValue);
+            codeField.ValueList.Add(DataValue.DoubleQuotationString(value));
 
             return codeField;
         }
@@ -121,13 +118,10 @@ namespace Panosen.CodeDom.Java
         {
             if (codeField.ValueList == null)
             {
-                codeField.ValueList = new List<CodeValue>();
+                codeField.ValueList = new List<DataItem>();
             }
 
-            CodeValue codeValue = new CodeValue();
-            codeValue.Type = CodeValueType.PLAIN;
-            codeValue.Value = value;
-            codeField.ValueList.Add(codeValue);
+            codeField.ValueList.Add((DataValue)value);
 
             return codeField;
         }

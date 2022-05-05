@@ -51,32 +51,25 @@ namespace Panosen.CodeDom.Java.Engine
             codeWriter.Write(codeProperty.Type ?? string.Empty).Write(Marks.WHITESPACE)
                 .Write((codeProperty.Name ?? string.Empty).ToLowerCamelCase());
 
-            if (codeProperty.ValueList != null && codeProperty.ValueList.Count > 0)
+            if (codeProperty.ValueList != null)
             {
                 options.PushIndent();
 
                 codeWriter.Write(Marks.WHITESPACE).Write(Marks.EQUAL).Write(Marks.WHITESPACE);
-                for (int i = 0; i < codeProperty.ValueList.Count; i++)
-                {
-                    var codeValue = codeProperty.ValueList[i];
-                    switch (codeValue.Type)
-                    {
-                        case CodeValueType.PLAIN:
-                            codeWriter.Write(codeValue.Value);
-                            break;
-                        case CodeValueType.STRING:
-                            codeWriter.Write(Marks.DOUBLE_QUOTATION).Write(codeValue.Value).Write(Marks.DOUBLE_QUOTATION);
-                            break;
-                        default:
-                            break;
-                    }
 
-                    if (i < codeProperty.ValueList.Count - 1)
+                var enumerator = codeProperty.ValueList.GetEnumerator();
+                var moveNext = enumerator.MoveNext();
+                while (moveNext)
+                {
+                    GenerateDataItem(enumerator.Current, codeWriter, options);
+
+                    moveNext = enumerator.MoveNext();
+                    if (moveNext)
                     {
                         codeWriter.Write(Marks.WHITESPACE).WriteLine(Marks.PLUS);
-
                         codeWriter.Write(options.IndentString);
                     }
+
                 }
 
                 options.PopIndent();

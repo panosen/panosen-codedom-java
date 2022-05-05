@@ -131,7 +131,7 @@ public class Student {
 
                 for (int i = 0; i < 3; i++)
                 {
-                    codeField.AddValue(new CodeValue { Type = CodeValueType.PLAIN, Value = $"\"plain_field_{i}\"" });
+                    codeField.AddPlainValue($"\"plain_field_{i}\"");
                 }
             }
             {
@@ -142,7 +142,7 @@ public class Student {
 
                 for (int i = 0; i < 3; i++)
                 {
-                    codeField.AddValue(new CodeValue { Type = CodeValueType.STRING, Value = $"string_field_{i}" });
+                    codeField.AddStringValue($"string_field_{i}");
                 }
             }
 
