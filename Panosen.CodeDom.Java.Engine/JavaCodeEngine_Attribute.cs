@@ -20,7 +20,7 @@ namespace Panosen.CodeDom.Java.Engine
             var hasListParam = codeAttribute.ParamList != null && codeAttribute.ParamList.Count > 0;
             var hasMapParam = codeAttribute.ParamMap != null && codeAttribute.ParamMap.Count > 0;
 
-            codeWriter.Write(Marks.LEFT_SQUARE_BRACKET).Write(codeAttribute.Name ?? string.Empty);
+            codeWriter.Write(Marks.AT).Write(codeAttribute.Name ?? string.Empty);
 
             if (hasListParam || hasMapParam)
             {
@@ -54,7 +54,7 @@ namespace Panosen.CodeDom.Java.Engine
                     GenerateDataValue(enumerator.Current.Value, codeWriter, options);
 
                     moveNext = enumerator.MoveNext();
-                    if (moveNext || hasMapParam)
+                    if (moveNext)
                     {
                         codeWriter.Write(Marks.COMMA).Write(Marks.WHITESPACE);
                     }
@@ -65,8 +65,6 @@ namespace Panosen.CodeDom.Java.Engine
             {
                 codeWriter.Write(Marks.RIGHT_BRACKET);
             }
-
-            codeWriter.Write(Marks.RIGHT_SQUARE_BRACKET);
         }
     }
 }
