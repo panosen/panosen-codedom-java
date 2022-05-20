@@ -8,6 +8,9 @@ namespace Panosen.CodeDom.Java.Engine
 {
     partial class JavaCodeEngine
     {
+        /// <summary>
+        /// GenerateFinallyStepBuilder
+        /// </summary>
         public void GenerateFinallyStepBuilder(FinallyStepBuilder finallyStepBuilder, CodeWriter codeWriter, GenerateOptions options)
         {
             if (finallyStepBuilder == null) { return; }

@@ -46,7 +46,7 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// AddAttribute
         /// </summary>
-        public static TCodeParameter AddAttribute<TCodeParameter>(this TCodeParameter codeParameter, string name)
+        public static CodeAttribute AddAttribute<TCodeParameter>(this TCodeParameter codeParameter, string attributeName)
             where TCodeParameter : CodeParameter
         {
             if (codeParameter.AttributeList == null)
@@ -55,11 +55,11 @@ namespace Panosen.CodeDom.Java
             }
 
             CodeAttribute codeAttribute = new CodeAttribute();
-            codeAttribute.Name = name;
+            codeAttribute.Name = attributeName;
 
             codeParameter.AttributeList.Add(codeAttribute);
 
-            return codeParameter;
+            return codeAttribute;
         }
     }
 }
