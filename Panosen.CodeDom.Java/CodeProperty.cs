@@ -43,6 +43,24 @@ namespace Panosen.CodeDom.Java
     public static class CodePropertyExtension
     {
         /// <summary>
+        /// SetName
+        /// </summary>
+        public static CodeProperty SetName(this CodeProperty codeProperty, string name)
+        {
+            codeProperty.Name = name;
+            return codeProperty;
+        }
+
+        /// <summary>
+        /// SetSummary
+        /// </summary>
+        public static CodeProperty SetSummary(this CodeProperty codeProperty, string summary)
+        {
+            codeProperty.Summary = summary;
+            return codeProperty;
+        }
+
+        /// <summary>
         /// AddAttribute
         /// </summary>
         public static CodeProperty AddAttribute(this CodeProperty codeProperty, CodeAttribute codeAttribute)
