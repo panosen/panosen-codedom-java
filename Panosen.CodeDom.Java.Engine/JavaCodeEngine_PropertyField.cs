@@ -11,9 +11,6 @@ namespace Panosen.CodeDom.Java.Engine
         /// <summary>
         /// 生成属性对应的字段
         /// </summary>
-        /// <param name="codeProperty"></param>
-        /// <param name="codeWriter"></param>
-        /// <param name="options"></param>
         public void GeneratePropertyField(CodeProperty codeProperty, CodeWriter codeWriter, GenerateOptions options = null)
         {
             if (codeProperty == null) { return; }

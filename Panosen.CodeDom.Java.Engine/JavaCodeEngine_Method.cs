@@ -17,7 +17,7 @@ namespace Panosen.CodeDom.Java.Engine
             if (codeWriter == null) { return; }
             options = options ?? new GenerateOptions();
 
-            if (options.UseJavaCoc)
+            if (options.UseJavaDoc)
             {
                 GenerateJavaDoc(codeMethod, codeWriter, options);
             }

@@ -11,9 +11,6 @@ namespace Panosen.CodeDom.Java.Engine
         /// <summary>
         /// 生成属性对应的方法
         /// </summary>
-        /// <param name="codeProperty"></param>
-        /// <param name="codeWriter"></param>
-        /// <param name="options"></param>
         public void GeneratePropertyMethod(CodeProperty codeProperty, CodeWriter codeWriter, GenerateOptions options = null)
         {
             if (codeProperty == null) { return; }
@@ -26,7 +23,7 @@ namespace Panosen.CodeDom.Java.Engine
                 {
                     codeMethod.Summary = "[getter] " + codeProperty.Summary;
                 }
-                else if (options.UseJavaCoc)
+                else if (options.UseJavaDoc)
                 {
                     codeMethod.Summary = "[getter] " + codeProperty.Name;
                 }
@@ -41,7 +38,7 @@ namespace Panosen.CodeDom.Java.Engine
                 {
                     codeMethod.Summary = "[setter] " + codeProperty.Summary;
                 }
-                else if (options.UseJavaCoc)
+                else if (options.UseJavaDoc)
                 {
                     codeMethod.Summary = "[setter] " + codeProperty.Name;
                 }

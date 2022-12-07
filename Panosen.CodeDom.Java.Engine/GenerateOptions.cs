@@ -21,7 +21,7 @@ namespace Panosen.CodeDom.Java.Engine
         /// <summary>
         /// 强制加注释
         /// </summary>
-        public bool UseJavaCoc { get; set; }
+        public bool UseJavaDoc { get; set; }
 
         /// <summary>
         /// 缩进个数

@@ -18,7 +18,7 @@ namespace Panosen.CodeDom.Java.Engine.MSTest
 
             new JavaCodeEngine().Generate(option, builder, new GenerateOptions
             {
-                UseJavaCoc = true
+                UseJavaDoc = true
             });
 
             var actual = builder.ToString();

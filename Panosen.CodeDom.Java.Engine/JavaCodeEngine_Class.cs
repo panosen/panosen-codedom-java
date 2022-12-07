@@ -11,9 +11,6 @@ namespace Panosen.CodeDom.Java.Engine
         /// <summary>
         /// 生成类
         /// </summary>
-        /// <param name="codeClass"></param>
-        /// <param name="codeWriter"></param>
-        /// <param name="options"></param>
         public void GenerateClass(CodeClass codeClass, CodeWriter codeWriter, GenerateOptions options = null)
         {
             if (codeClass == null) { return; }
