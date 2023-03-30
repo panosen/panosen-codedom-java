@@ -18,39 +18,29 @@ namespace Panosen.CodeDom.Java.Engine
             options = options ?? new GenerateOptions();
 
             var hasListParam = codeAttribute.ParamList != null && codeAttribute.ParamList.Count > 0;
-            var hasMapParam = codeAttribute.ParamMap != null && codeAttribute.ParamMap.Count > 0;
 
             codeWriter.Write(Marks.AT).Write(codeAttribute.Name ?? string.Empty);
 
-            if (hasListParam || hasMapParam)
+            if (!hasListParam)
             {
-                codeWriter.Write(Marks.LEFT_BRACKET);
+                return;
             }
 
-            if (hasListParam)
+            // (
+            codeWriter.Write(Marks.LEFT_BRACKET);
+
+            //参数
             {
                 var enumerator = codeAttribute.ParamList.GetEnumerator();
                 var moveNext = enumerator.MoveNext();
                 while (moveNext)
                 {
-                    GenerateDataValue(enumerator.Current, codeWriter, options);
-
-                    moveNext = enumerator.MoveNext();
-                    if (moveNext || hasMapParam)
+                    if (enumerator.Current.Key != null)
                     {
-                        codeWriter.Write(Marks.COMMA).Write(Marks.WHITESPACE);
+                        codeWriter.Write(enumerator.Current.Key);
+                        codeWriter.Write(Marks.WHITESPACE).Write(Marks.EQUAL).Write(Marks.WHITESPACE);
                     }
-                }
-            }
 
-            if (hasMapParam)
-            {
-                var enumerator = codeAttribute.ParamMap.GetEnumerator();
-                var moveNext = enumerator.MoveNext();
-                while (moveNext)
-                {
-                    codeWriter.Write(enumerator.Current.Key);
-                    codeWriter.Write(Marks.WHITESPACE).Write(Marks.EQUAL).Write(Marks.WHITESPACE);
                     GenerateDataValue(enumerator.Current.Value, codeWriter, options);
 
                     moveNext = enumerator.MoveNext();
@@ -61,10 +51,8 @@ namespace Panosen.CodeDom.Java.Engine
                 }
             }
 
-            if (hasListParam || hasMapParam)
-            {
-                codeWriter.Write(Marks.RIGHT_BRACKET);
-            }
+            // )
+            codeWriter.Write(Marks.RIGHT_BRACKET);
         }
     }
 }

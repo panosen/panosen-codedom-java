@@ -14,12 +14,7 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// ParamList
         /// </summary>
-        public List<DataValue> ParamList { get; set; }
-
-        /// <summary>
-        /// ParamMap
-        /// </summary>
-        public Dictionary<string, DataValue> ParamMap { get; set; }
+        public List<CodeAttributeParam> ParamList { get; set; }
     }
 
     /// <summary>
@@ -34,10 +29,10 @@ namespace Panosen.CodeDom.Java
         {
             if (codeAttribute.ParamList == null)
             {
-                codeAttribute.ParamList = new List<DataValue>();
+                codeAttribute.ParamList = new List<CodeAttributeParam>();
             }
 
-            codeAttribute.ParamList.Add(value);
+            codeAttribute.ParamList.Add(new CodeAttributeParam { Value = value });
 
             return codeAttribute;
         }
@@ -49,10 +44,10 @@ namespace Panosen.CodeDom.Java
         {
             if (codeAttribute.ParamList == null)
             {
-                codeAttribute.ParamList = new List<DataValue>();
+                codeAttribute.ParamList = new List<CodeAttributeParam>();
             }
 
-            codeAttribute.ParamList.Add(DataValue.DoubleQuotationString(value));
+            codeAttribute.ParamList.Add(new CodeAttributeParam { Value = DataValue.DoubleQuotationString(value) });
 
             return codeAttribute;
         }
@@ -62,17 +57,12 @@ namespace Panosen.CodeDom.Java
         /// </summary>
         public static CodeAttribute AddPlainParam(this CodeAttribute codeAttribute, string key, string value)
         {
-            if (codeAttribute.ParamMap == null)
+            if (codeAttribute.ParamList == null)
             {
-                codeAttribute.ParamMap = new Dictionary<string, DataValue>();
+                codeAttribute.ParamList = new List<CodeAttributeParam>();
             }
 
-            if (codeAttribute.ParamMap.ContainsKey(key))
-            {
-                return codeAttribute;
-            }
-
-            codeAttribute.ParamMap.Add(key, value);
+            codeAttribute.ParamList.Add(new CodeAttributeParam { Key = key, Value = value });
 
             return codeAttribute;
         }
@@ -82,17 +72,12 @@ namespace Panosen.CodeDom.Java
         /// </summary>
         public static CodeAttribute AddStringParam(this CodeAttribute codeAttribute, string key, string value)
         {
-            if (codeAttribute.ParamMap == null)
+            if (codeAttribute.ParamList == null)
             {
-                codeAttribute.ParamMap = new Dictionary<string, DataValue>();
+                codeAttribute.ParamList = new List<CodeAttributeParam>();
             }
 
-            if (codeAttribute.ParamMap.ContainsKey(key))
-            {
-                return codeAttribute;
-            }
-
-            codeAttribute.ParamMap.Add(key, DataValue.DoubleQuotationString(value));
+            codeAttribute.ParamList.Add(new CodeAttributeParam { Key = key, Value = DataValue.DoubleQuotationString(value) });
 
             return codeAttribute;
         }
