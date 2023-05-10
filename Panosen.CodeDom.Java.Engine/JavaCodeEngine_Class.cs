@@ -19,15 +19,7 @@ namespace Panosen.CodeDom.Java.Engine
 
             GenerateSummary(codeClass.Summary, codeWriter, options);
 
-            if (codeClass.AttributeList != null && codeClass.AttributeList.Count > 0)
-            {
-                foreach (var codeAttribute in codeClass.AttributeList)
-                {
-                    codeWriter.Write(options.IndentString);
-                    GenerateAttribute(codeAttribute, codeWriter, options);
-                    codeWriter.WriteLine();
-                }
-            }
+            GenerateAttributeList(codeClass.AttributeList, codeWriter, options);
 
             codeWriter.Write(options.IndentString);
 
@@ -122,6 +114,20 @@ namespace Panosen.CodeDom.Java.Engine
             options.PopIndent();
 
             codeWriter.Write(options.IndentString).WriteLine(Marks.RIGHT_BRACE);
+        }
+
+        private void GenerateAttributeList(List<CodeAttribute> attributeList, CodeWriter codeWriter, GenerateOptions options)
+        {
+            if (attributeList == null || attributeList.Count <= 0)
+            {
+                return;
+            }
+            foreach (var codeAttribute in attributeList)
+            {
+                codeWriter.Write(options.IndentString);
+                GenerateAttribute(codeAttribute, codeWriter, options);
+                codeWriter.WriteLine();
+            }
         }
     }
 }

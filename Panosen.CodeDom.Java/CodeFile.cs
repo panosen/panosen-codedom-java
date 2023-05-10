@@ -313,6 +313,41 @@ namespace Panosen.CodeDom.Java
             return codeClass;
         }
 
+
+        /// <summary>
+        /// 添加一个接口
+        /// </summary>
+        public static CodeFile AddInterface(this CodeFile codeFile, CodeInterface codeInterface)
+        {
+            if (codeFile.InterfaceList == null)
+            {
+                codeFile.InterfaceList = new List<CodeInterface>();
+            }
+
+            codeFile.InterfaceList.Add(codeInterface);
+
+            return codeFile;
+        }
+
+        /// <summary>
+        /// 添加一个接口
+        /// </summary>
+        public static CodeInterface AddInterface(this CodeFile codeFile, string name = null, string summary = null)
+        {
+            if (codeFile.InterfaceList == null)
+            {
+                codeFile.InterfaceList = new List<CodeInterface>();
+            }
+
+            CodeInterface codeInterface = new CodeInterface();
+            codeInterface.Name = name;
+            codeInterface.Summary = summary;
+
+            codeFile.InterfaceList.Add(codeInterface);
+
+            return codeInterface;
+        }
+
         /// <summary>
         /// 添加一个枚举
         /// </summary>

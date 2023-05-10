@@ -22,6 +22,8 @@ namespace Panosen.CodeDom.Java.Engine
 
             GenerateSummary(codeInterface.Summary, codeWriter, options);
 
+            GenerateAttributeList(codeInterface.AttributeList, codeWriter, options);
+
             codeWriter.Write(options.IndentString);
 
             if (codeInterface.AccessModifiers != AccessModifiers.None)
