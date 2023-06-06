@@ -11,3 +11,4 @@ pull_request_rules:
     actions:
       merge:
         method: rebase
+        allow_merging_configuration_change: true
