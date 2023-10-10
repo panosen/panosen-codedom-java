@@ -84,12 +84,18 @@ namespace Panosen.CodeDom.Java.Engine
                 }
             }
 
+            if (codeClass.StaticConstructor != null)
+            {
+                codeWriter.WriteLine();
+                GenerateStaticConstructor(codeClass.StaticConstructor, codeWriter, options);
+            }
+
             if (codeClass.ConstructorList != null && codeClass.ConstructorList.Count > 0)
             {
                 foreach (var codeConstructor in codeClass.ConstructorList)
                 {
                     codeWriter.WriteLine();
-                    GenerateConstructor(codeConstructor, codeWriter, options);
+                    GenerateMethod(codeConstructor, codeWriter, options);
                 }
             }
 

@@ -7,9 +7,25 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Panosen.CodeDom.Java.Engine.MSTest
 {
     [TestClass]
-    public class UT_CodeAttribute : UTBase
+    public class UT_CodeAttribute
     {
-        protected override string PrepareExpected()
+        [TestMethod]
+        public void Test()
+        {
+            var option = PrepareCode();
+
+            StringBuilder builder = new StringBuilder();
+
+            new JavaCodeEngine().GenerateClass(option, builder, new GenerateOptions());
+
+            var actual = builder.ToString();
+
+            var expeced = PrepareExpected();
+
+            Assert.AreEqual(expeced, actual);
+        }
+
+        protected string PrepareExpected()
         {
             return @"public class Student {
 
@@ -30,7 +46,7 @@ namespace Panosen.CodeDom.Java.Engine.MSTest
 ";
         }
 
-        protected override Code PrepareCode()
+        protected CodeClass PrepareCode()
         {
             CodeClass codeClass = new CodeClass();
             codeClass.Name = "Student";

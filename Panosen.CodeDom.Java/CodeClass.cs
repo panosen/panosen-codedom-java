@@ -45,6 +45,11 @@ namespace Panosen.CodeDom.Java
         public List<CodeMethod> ConstructorList { get; set; }
 
         /// <summary>
+        /// 静态构造函数
+        /// </summary>
+        public StaticConstructor StaticConstructor { get; set; }
+
+        /// <summary>
         /// 该类实现的接口
         /// </summary>
         public List<CodeInterface> InterfaceList { get; set; }
@@ -188,9 +193,6 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// 添加一批方法
         /// </summary>
-        /// <param name="codeClass"></param>
-        /// <param name="codeMethods"></param>
-        /// <returns></returns>
         public static CodeClass AddMethods(this CodeClass codeClass, List<CodeMethod> codeMethods)
         {
             if (codeMethods == null || codeMethods.Count == 0)
@@ -209,7 +211,7 @@ namespace Panosen.CodeDom.Java
         }
 
         /// <summary>
-        /// AddConstructor
+        /// 添加构造函数
         /// </summary>
         public static CodeClass AddConstructor(this CodeClass codeClass, CodeMethod codeMethod)
         {
@@ -238,6 +240,28 @@ namespace Panosen.CodeDom.Java
             codeClass.ConstructorList.Add(codeMethod);
 
             return codeMethod;
+        }
+
+        /// <summary>
+        /// 添加静态构造函数
+        /// </summary>
+        public static CodeClass AddStaticConstructor(this CodeClass codeClass, StaticConstructor staticConstructor)
+        {
+            codeClass.StaticConstructor = staticConstructor;
+
+            return codeClass;
+        }
+
+        /// <summary>
+        /// 添加静态构造函数
+        /// </summary>
+        public static StaticConstructor AddStaticConstructor(this CodeClass codeClass)
+        {
+            StaticConstructor staticConstructor = new StaticConstructor();
+
+            codeClass.StaticConstructor = staticConstructor;
+
+            return staticConstructor;
         }
 
         /// <summary>

@@ -9,7 +9,7 @@ namespace Panosen.CodeDom.Java
     /// <summary>
     /// ${Parameter} => ${Expression}
     /// </summary>
-    public class CodeLamdaExpression : DataItem
+    public sealed class CodeLamdaExpression : DataItem
     {
         /// <summary>
         /// 参数
@@ -30,8 +30,7 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// SetParameter
         /// </summary>
-        public static TCodeLamdaStatementExpression SetParameter<TCodeLamdaStatementExpression>(this TCodeLamdaStatementExpression lamda, string parameter)
-            where TCodeLamdaStatementExpression : CodeLamdaExpression
+        public static CodeLamdaExpression SetParameter(this CodeLamdaExpression lamda, string parameter)
         {
             lamda.Parameter = parameter;
 
@@ -41,8 +40,7 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// SetExpression
         /// </summary>
-        public static TCodeLamdaStatementExpression SetExpression<TCodeLamdaStatementExpression>(this TCodeLamdaStatementExpression lamda, string expression)
-            where TCodeLamdaStatementExpression : CodeLamdaExpression
+        public static CodeLamdaExpression SetExpression(this CodeLamdaExpression lamda, string expression)
         {
             lamda.Expression = expression;
 

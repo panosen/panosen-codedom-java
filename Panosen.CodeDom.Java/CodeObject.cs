@@ -6,7 +6,7 @@ namespace Panosen.CodeDom.Java
     /// <summary>
     /// CodeObject
     /// </summary>
-    public class CodeObject : Code
+    public class CodeObject
     {
         /// <summary>
         /// Name

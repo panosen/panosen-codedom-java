@@ -18,6 +18,11 @@ namespace Panosen.CodeDom.Java.Engine
                 GenerateDataValue(dataItem as DataValue, codeWriter, options);
             }
 
+            if (dataItem is CodeNewInstance)
+            {
+                GenerateNewInstance(dataItem as CodeNewInstance, codeWriter, options);
+            }
+
             if (dataItem is CodeLamdaNewInstance)
             {
                 GenerateLamdaNewInstance(dataItem as CodeLamdaNewInstance, codeWriter, options);
@@ -26,11 +31,6 @@ namespace Panosen.CodeDom.Java.Engine
             if (dataItem is CodeLamdaExpression)
             {
                 GenerateLamdaExpression(dataItem as CodeLamdaExpression, codeWriter, options);
-            }
-
-            if (dataItem is CodeLamdaStepBuilderCollection)
-            {
-                GenerateLamdaStepBuilderCollection(dataItem as CodeLamdaStepBuilderCollection, codeWriter, options);
             }
         }
     }

@@ -9,23 +9,23 @@ namespace Panosen.CodeDom.Java.Engine
     partial class JavaCodeEngine
     {
         /// <summary>
-        /// GenerateAssignStringVariableStepBuilder
+        /// GenerateAssignStringVariableStep
         /// </summary>
-        public void GenerateAssignStringVariableStepBuilder(AssignStringVariableStepBuilder assignStringVariableStepBuilder, CodeWriter codeWriter, GenerateOptions options)
+        public void GenerateAssignStringVariableStep(AssignStringVariableStep assignStringVariableStep, CodeWriter codeWriter, GenerateOptions options)
         {
-            if (assignStringVariableStepBuilder == null) { return; }
+            if (assignStringVariableStep == null) { return; }
             if (codeWriter == null) { return; }
             options = options ?? new GenerateOptions();
 
-            var items = assignStringVariableStepBuilder.Value.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var items = assignStringVariableStep.Value.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             if (items.Count == 1)
             {
-                codeWriter.Write(options.IndentString).WriteLine($"String {assignStringVariableStepBuilder.Name} = \"{items[0]}\";");
+                codeWriter.Write(options.IndentString).WriteLine($"String {assignStringVariableStep.Name} = \"{items[0]}\";");
             }
             else
             {
-                codeWriter.Write(options.IndentString).WriteLine($"String {assignStringVariableStepBuilder.Name} = \"{items[0]}\"");
+                codeWriter.Write(options.IndentString).WriteLine($"String {assignStringVariableStep.Name} = \"{items[0]}\"");
                 for (int i = 1; i < items.Count; i++)
                 {
                     var line = $"+ \"{items[i]}\"";

@@ -17,9 +17,9 @@ namespace Panosen.CodeDom.Java.Engine
             if (codeWriter == null) { return; }
             options = options ?? new GenerateOptions();
 
-            // x => new ${ClassName}
+            // x -> new ${ClassName}
             codeWriter.Write(lamda.Parameter)
-                .Write(Marks.WHITESPACE).Write(Marks.EQUAL).Write(Marks.GREATER_THAN).Write(Marks.WHITESPACE)
+                .Write(Marks.WHITESPACE).Write(Marks.MINUS).Write(Marks.GREATER_THAN).Write(Marks.WHITESPACE)
                 .Write(lamda.Expression);
         }
     }

@@ -9,12 +9,12 @@ namespace Panosen.CodeDom.Java
     /// <summary>
     /// x => new Item { }
     /// </summary>
-    public class CodeLamdaNewInstance : DataItem
+    public sealed class CodeLamdaNewInstance : DataItem
     {
         /// <summary>
         /// 参数
         /// </summary>
-        public string Parameter { get; set; }
+        public string LamdaParameter { get; set; }
 
         /// <summary>
         /// 类名
@@ -22,28 +22,27 @@ namespace Panosen.CodeDom.Java
         public string ClassName { get; set; }
 
         /// <summary>
-        /// 步骤集合
+        /// 参数
         /// </summary>
-        public StepBuilderCollection StepBuilderCollection { get; set; }
+        public List<DataItem> ConstructorParameters { get; set; }
 
         /// <summary>
-        /// Statements
+        /// 方法
         /// </summary>
-        public List<string> Statements { get; set; }
+        public List<CodeMethod> MethodList { get; set; }
     }
 
     /// <summary>
     /// CodeLamdaNewInstanceExpressionExtension
     /// </summary>
-    public static class CodeLamdaNewInstanceExpressionExtension
+    public static class CodeLamdaNewInstanceExtension
     {
         /// <summary>
         /// SetParameter
         /// </summary>
-        public static TCodeLamdaNewInstanceExpression SetParameter<TCodeLamdaNewInstanceExpression>(this TCodeLamdaNewInstanceExpression codeLamdaNewInstanceExpression, string parameter)
-            where TCodeLamdaNewInstanceExpression : CodeLamdaNewInstance
+        public static CodeLamdaNewInstance SetLamdaParameter(this CodeLamdaNewInstance codeLamdaNewInstanceExpression, string parameter)
         {
-            codeLamdaNewInstanceExpression.Parameter = parameter;
+            codeLamdaNewInstanceExpression.LamdaParameter = parameter;
 
             return codeLamdaNewInstanceExpression;
         }
@@ -51,28 +50,118 @@ namespace Panosen.CodeDom.Java
         /// <summary>
         /// SetBooleanExpression
         /// </summary>
-        public static TCodeLamdaNewInstanceExpression SetClassName<TCodeLamdaNewInstanceExpression>(this TCodeLamdaNewInstanceExpression codeLamdaNewInstanceExpression, string className)
-            where TCodeLamdaNewInstanceExpression : CodeLamdaNewInstance
+        public static CodeLamdaNewInstance SetClassName(this CodeLamdaNewInstance codeLamdaNewInstanceExpression, string className)
         {
             codeLamdaNewInstanceExpression.ClassName = className;
 
             return codeLamdaNewInstanceExpression;
         }
 
+        #region 构造函数的参数
+
         /// <summary>
-        /// SetBooleanExpression
+        /// AddValue
         /// </summary>
-        public static TCodeLamdaNewInstanceExpression StepStatement<TCodeLamdaNewInstanceExpression>(this TCodeLamdaNewInstanceExpression codeLamdaNewInstanceExpression, string statement)
-            where TCodeLamdaNewInstanceExpression : CodeLamdaNewInstance
+        public static CodeLamdaNewInstance AddValue(this CodeLamdaNewInstance codeField, DataItem value)
         {
-            if (codeLamdaNewInstanceExpression.Statements == null)
+            if (codeField.ConstructorParameters == null)
             {
-                codeLamdaNewInstanceExpression.Statements = new List<string>();
+                codeField.ConstructorParameters = new List<DataItem>();
             }
 
-            codeLamdaNewInstanceExpression.Statements.Add(statement);
+            codeField.ConstructorParameters.Add(value);
 
-            return codeLamdaNewInstanceExpression;
+            return codeField;
         }
+
+        /// <summary>
+        /// AddStringValue
+        /// </summary>
+        public static CodeLamdaNewInstance AddStringValue(this CodeLamdaNewInstance codeField, string value)
+        {
+            if (codeField.ConstructorParameters == null)
+            {
+                codeField.ConstructorParameters = new List<DataItem>();
+            }
+
+            codeField.ConstructorParameters.Add(DataValue.DoubleQuotationString(value));
+
+            return codeField;
+        }
+
+        /// <summary>
+        /// AddPlainValue
+        /// </summary>
+        public static CodeLamdaNewInstance AddPlainValue(this CodeLamdaNewInstance codeField, string value)
+        {
+            if (codeField.ConstructorParameters == null)
+            {
+                codeField.ConstructorParameters = new List<DataItem>();
+            }
+
+            codeField.ConstructorParameters.Add((DataValue)value);
+
+            return codeField;
+        }
+
+        #endregion
+
+
+        #region 实例内部方法
+
+        /// <summary>
+        /// 添加一个方法
+        /// </summary>
+        public static CodeLamdaNewInstance AddMethod(this CodeLamdaNewInstance lamda, CodeMethod codeMethod)
+        {
+            if (lamda.MethodList == null)
+            {
+                lamda.MethodList = new List<CodeMethod>();
+            }
+
+            lamda.MethodList.Add(codeMethod);
+
+            return lamda;
+        }
+
+        /// <summary>
+        /// 添加一个方法
+        /// </summary>
+        public static CodeMethod AddMethod(this CodeLamdaNewInstance lamda, string name, string summary = null)
+        {
+            if (lamda.MethodList == null)
+            {
+                lamda.MethodList = new List<CodeMethod>();
+            }
+
+            CodeMethod codeMethod = new CodeMethod();
+            codeMethod.Name = name;
+            codeMethod.Summary = summary;
+
+            lamda.MethodList.Add(codeMethod);
+
+            return codeMethod;
+        }
+
+        /// <summary>
+        /// 添加一批方法
+        /// </summary>
+        public static CodeLamdaNewInstance AddMethods(this CodeLamdaNewInstance lamda, List<CodeMethod> codeMethods)
+        {
+            if (codeMethods == null || codeMethods.Count == 0)
+            {
+                return lamda;
+            }
+
+            if (lamda.MethodList == null)
+            {
+                lamda.MethodList = new List<CodeMethod>();
+            }
+
+            lamda.MethodList.AddRange(codeMethods);
+
+            return lamda;
+        } 
+        #endregion
     }
 }

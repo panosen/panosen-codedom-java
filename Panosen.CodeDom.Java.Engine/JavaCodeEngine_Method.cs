@@ -53,13 +53,27 @@ namespace Panosen.CodeDom.Java.Engine
                 codeWriter.Write(Keywords.STATIC).Write(Marks.WHITESPACE);
             }
 
+            if (codeMethod.GenericTypeList != null && codeMethod.GenericTypeList.Count > 0)
+            {
+                codeWriter.Write(Marks.LESS_THAN);
+
+                for (int i = 0; i < codeMethod.GenericTypeList.Count; i++)
+                {
+                    var genericType = codeMethod.GenericTypeList[i];
+                    codeWriter.Write(genericType);
+
+                    if (i < codeMethod.GenericTypeList.Count - 1)
+                    {
+                        codeWriter.Write(Marks.COMMA).Write(Marks.WHITESPACE);
+                    }
+                }
+
+                codeWriter.Write(Marks.GREATER_THAN).Write(Marks.WHITESPACE);
+            }
+
             if (!string.IsNullOrEmpty(codeMethod.ReturnType))
             {
                 codeWriter.Write(codeMethod.ReturnType).Write(Marks.WHITESPACE);
-            }
-            else
-            {
-                codeWriter.Write(Keywords.VOID).Write(Marks.WHITESPACE);
             }
 
             codeWriter.Write(codeMethod.Name ?? string.Empty);
@@ -87,7 +101,7 @@ namespace Panosen.CodeDom.Java.Engine
                 codeWriter.Write(Marks.WHITESPACE).Write(Keywords.THROWS).Write(Marks.WHITESPACE).Write(string.Join(", ", codeMethod.ExceptionList));
             }
 
-            if (codeMethod.StepBuilders == null)
+            if (codeMethod.Steps == null)
             {
                 codeWriter.WriteLine(Marks.SEMICOLON);
                 return;
@@ -97,9 +111,9 @@ namespace Panosen.CodeDom.Java.Engine
 
             options.PushIndent();
 
-            foreach (var stepBuilder in codeMethod.StepBuilders)
+            foreach (var stepBuilder in codeMethod.Steps)
             {
-                GenerateStepBuilderOrCollection(stepBuilder, codeWriter, options);
+                GenerateStepOrCollection(stepBuilder, codeWriter, options);
             }
 
             options.PopIndent();

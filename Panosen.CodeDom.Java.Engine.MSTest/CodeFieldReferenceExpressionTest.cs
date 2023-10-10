@@ -9,14 +9,30 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Panosen.CodeDom.Java.Engine.MSTest
 {
     [TestClass]
-    public class CodeFieldReferenceExpressionTest : UTBase
+    public class CodeFieldReferenceExpressionTest
     {
-        protected override string PrepareExpected()
+        [TestMethod]
+        public void Test()
+        {
+            var option = PrepareCode();
+
+            StringBuilder builder = new StringBuilder();
+
+            new JavaCodeEngine().GenerateCodeFieldReferenceExpression(option, builder, new GenerateOptions());
+
+            var actual = builder.ToString();
+
+            var expeced = PrepareExpected();
+
+            Assert.AreEqual(expeced, actual);
+        }
+
+        protected string PrepareExpected()
         {
             return @"this.Name";
         }
 
-        protected override Code PrepareCode()
+        protected CodeFieldReferenceExpression PrepareCode()
         {
             CodeFieldReferenceExpression codeExpression = new CodeFieldReferenceExpression();
             codeExpression.TargetObject = new CodeThisReferenceExpression();

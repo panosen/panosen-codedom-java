@@ -9,7 +9,7 @@ namespace Panosen.CodeDom.Java
     /// <summary>
     /// CodeExpression
     /// </summary>
-    public class CodeExpression : Code
+    public class CodeExpression
     {
     }
 }

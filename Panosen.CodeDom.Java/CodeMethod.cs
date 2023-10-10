@@ -9,7 +9,7 @@ namespace Panosen.CodeDom.Java
     /// <summary>
     /// 方法
     /// </summary>
-    public class CodeMethod : CodeObject, IStepBuilderCollection
+    public class CodeMethod : CodeObject, IStepCollection
     {
         /// <summary>
         /// 类型
@@ -37,6 +37,11 @@ namespace Panosen.CodeDom.Java
         public List<string> ExceptionList { get; set; }
 
         /// <summary>
+        /// 泛型参数列表
+        /// </summary>
+        public List<string> GenericTypeList { get; set; }
+
+        /// <summary>
         /// static
         /// </summary>
         public bool IsStatic { get; set; }
@@ -46,12 +51,12 @@ namespace Panosen.CodeDom.Java
         /// </summary>
         public bool IsSynchronized { get; set; }
 
-        #region IStepBuilderCollection Members
+        #region IStepCollection Members
 
         /// <summary>
-        /// IStepBuilderCollection.StepBuilders
+        /// IStepCollection.Steps
         /// </summary>
-        public List<StepBuilderOrCollection> StepBuilders { get; set; }
+        public List<StepOrCollection> Steps { get; set; }
 
         #endregion
     }
@@ -61,6 +66,26 @@ namespace Panosen.CodeDom.Java
     /// </summary>
     public static class CodeMethodExtension
     {
+        /// <summary>
+        /// SetReturnType
+        /// </summary>
+        public static CodeMethod SetReturnType(this CodeMethod codeMethod, string returnType)
+        {
+            codeMethod.ReturnType = returnType;
+
+            return codeMethod;
+        }
+
+        /// <summary>
+        /// SetAccessModifiers
+        /// </summary>
+        public static CodeMethod SetAccessModifiers(this CodeMethod codeMethod, AccessModifiers accessModifiers)
+        {
+            codeMethod.AccessModifiers = accessModifiers;
+
+            return codeMethod;
+        }
+
         /// <summary>
         /// AddParameter
         /// </summary>
@@ -140,6 +165,21 @@ namespace Panosen.CodeDom.Java
             }
 
             codeMethod.ExceptionList.Add(exception);
+
+            return codeMethod;
+        }
+
+        /// <summary>
+        /// AddGenericType
+        /// </summary>
+        public static CodeMethod AddGenericType(this CodeMethod codeMethod, string genericType)
+        {
+            if (codeMethod.GenericTypeList == null)
+            {
+                codeMethod.GenericTypeList = new List<string>();
+            }
+
+            codeMethod.GenericTypeList.Add(genericType);
 
             return codeMethod;
         }

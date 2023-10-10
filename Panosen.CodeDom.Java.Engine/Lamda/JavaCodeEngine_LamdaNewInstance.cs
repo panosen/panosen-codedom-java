@@ -17,8 +17,8 @@ namespace Panosen.CodeDom.Java.Engine
             if (codeWriter == null) { return; }
             options = options ?? new GenerateOptions();
 
-            // x => new ${ClassName}
-            codeWriter.Write(lamda.Parameter).Write(Marks.WHITESPACE).Write(Marks.EQUAL).Write(Marks.GREATER_THAN).Write(Marks.WHITESPACE)
+            // x -> new ${ClassName}
+            codeWriter.Write(lamda.LamdaParameter).Write(Marks.WHITESPACE).Write(Marks.MINUS).Write(Marks.GREATER_THAN).Write(Marks.WHITESPACE)
                 .Write(Keywords.NEW);
 
             if (!string.IsNullOrEmpty(lamda.ClassName))
@@ -26,34 +26,41 @@ namespace Panosen.CodeDom.Java.Engine
                 codeWriter.Write(Marks.WHITESPACE).Write(lamda.ClassName);
             }
 
-            if (lamda.Statements == null || lamda.Statements.Count == 0)
+            codeWriter.Write(Marks.LEFT_BRACKET);
+
+            if (lamda.ConstructorParameters != null)
             {
-                codeWriter.Write(Marks.LEFT_BRACKET).Write(Marks.RIGHT_BRACKET);
-                return;
+                var enumerator = lamda.ConstructorParameters.GetEnumerator();
+                var moveNext = enumerator.MoveNext();
+                while (moveNext)
+                {
+                    GenerateDataItem(enumerator.Current, codeWriter, options);
+
+                    moveNext = enumerator.MoveNext();
+                    if (moveNext)
+                    {
+                        codeWriter.Write(Marks.COMMA).Write(Marks.WHITESPACE);
+                    }
+                }
             }
 
-            codeWriter.WriteLine();
+            codeWriter.Write(Marks.RIGHT_BRACKET);
 
-            codeWriter.Write(options.IndentString).WriteLine(Marks.LEFT_BRACE);
-            options.PushIndent();
-
-            var enumerator = lamda.Statements.GetEnumerator();
-            var moveNext = enumerator.MoveNext();
-            while (moveNext)
+            if (lamda.MethodList != null && lamda.MethodList.Count > 0)
             {
-                codeWriter.Write(options.IndentString).Write(enumerator.Current);
+                codeWriter.Write(Marks.WHITESPACE).WriteLine(Marks.LEFT_BRACE);
+                options.PushIndent();
 
-                moveNext = enumerator.MoveNext();
-                if (moveNext)
+                foreach (var codeMethod in lamda.MethodList)
                 {
-                    codeWriter.Write(Marks.COMMA);
+                    codeWriter.WriteLine();
+                    codeMethod.AddAttribute("Override");
+                    GenerateMethod(codeMethod, codeWriter, options);
                 }
 
-                codeWriter.WriteLine();
+                options.PopIndent();
+                codeWriter.Write(options.IndentString).Write(Marks.RIGHT_BRACE);
             }
-
-            options.PopIndent();
-            codeWriter.Write(options.IndentString).Write(Marks.RIGHT_BRACE);
         }
     }
 }
