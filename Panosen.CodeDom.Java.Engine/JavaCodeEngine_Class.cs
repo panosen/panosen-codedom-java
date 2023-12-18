@@ -57,15 +57,6 @@ namespace Panosen.CodeDom.Java.Engine
 
             options.PushIndent();
 
-            if (codeClass.ConstantList != null && codeClass.ConstantList.Count > 0)
-            {
-                foreach (var codeConstant in codeClass.ConstantList)
-                {
-                    codeWriter.WriteLine();
-                    GenerateConstant(codeConstant, codeWriter, options);
-                }
-            }
-
             if (codeClass.FieldList != null && codeClass.FieldList.Count > 0)
             {
                 foreach (var codeField in codeClass.FieldList)

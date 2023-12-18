@@ -43,14 +43,14 @@ namespace Panosen.CodeDom.Java.Engine
                 codeWriter.Write(AccessModifiers.Private.Value()).Write(Marks.WHITESPACE);
             }
 
-            if (codeField.IsFinal)
-            {
-                codeWriter.Write(Keywords.FINAL).Write(Marks.WHITESPACE);
-            }
-
             if (codeField.IsStatic)
             {
                 codeWriter.Write(Keywords.STATIC).Write(Marks.WHITESPACE);
+            }
+
+            if (codeField.IsFinal)
+            {
+                codeWriter.Write(Keywords.FINAL).Write(Marks.WHITESPACE);
             }
 
             codeWriter.Write(codeField.Type ?? string.Empty).Write(Marks.WHITESPACE);

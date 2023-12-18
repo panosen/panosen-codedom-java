@@ -48,11 +48,6 @@ namespace Panosen.CodeDom.Java.Engine
         public const string FINALLY = "finally";
 
         /// <summary>
-        /// const
-        /// </summary>
-        public const string CONST = "const";
-
-        /// <summary>
         /// else
         /// </summary>
         public const string ELSE = "else";

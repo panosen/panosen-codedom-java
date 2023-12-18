@@ -17,16 +17,6 @@ namespace Panosen.CodeDom.Java.Engine.MSTest
 public class Student {
 
     /**
-     * 常量 0
-     */
-    const string Constant0 = ""aa"";
-
-    /**
-     * 常量 1
-     */
-    const string Constant1 = ""aa"";
-
-    /**
      * 字段 0
      */
     private String Field0;
@@ -103,11 +93,6 @@ public class Student {
             codeClass.Name = "Student";
             codeClass.Summary = "学生";
             codeClass.AccessModifiers = AccessModifiers.Public;
-
-            for (int i = 0; i < 2; i++)
-            {
-                codeClass.AddConstant("string", $"Constant{i}", "\"aa\"", summary: $"常量 {i}");
-            }
 
             for (int i = 0; i < 2; i++)
             {

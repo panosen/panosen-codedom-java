@@ -60,11 +60,6 @@ namespace Panosen.CodeDom.Java
         public CodeClass BaseClass { get; set; }
 
         /// <summary>
-        /// 常量
-        /// </summary>
-        public List<CodeConstant> ConstantList { get; set; }
-
-        /// <summary>
         /// 特性
         /// </summary>
         public List<CodeAttribute> AttributeList { get; set; }
@@ -386,45 +381,6 @@ namespace Panosen.CodeDom.Java
             codeClass.FieldList.Add(codeField);
 
             return codeField;
-        }
-
-        /// <summary>
-        /// AddConstant
-        /// </summary>
-        public static CodeClass AddConstant(this CodeClass codeClass, CodeConstant codeConstant)
-        {
-            if (codeClass.ConstantList == null)
-            {
-                codeClass.ConstantList = new List<CodeConstant>();
-            }
-
-            codeClass.ConstantList.Add(codeConstant);
-
-            return codeClass;
-        }
-
-        /// <summary>
-        /// AddConstant
-        /// </summary>
-        public static CodeConstant AddConstant(this CodeClass codeClass,
-            string type, string name, string value, string summary = null,
-            AccessModifiers accessModifiers = AccessModifiers.None)
-        {
-            if (codeClass.ConstantList == null)
-            {
-                codeClass.ConstantList = new List<CodeConstant>();
-            }
-
-            CodeConstant codeConstant = new CodeConstant();
-            codeConstant.AccessModifiers = accessModifiers;
-            codeConstant.Name = name;
-            codeConstant.Type = type;
-            codeConstant.Value = value;
-            codeConstant.Summary = summary;
-
-            codeClass.ConstantList.Add(codeConstant);
-
-            return codeConstant;
         }
     }
 }
